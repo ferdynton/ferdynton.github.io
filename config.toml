@@ -1,0 +1,24 @@
+baseURL = "https://ferdy89.github.io/"
+title = "Code and Stuff"
+languageCode = "en-US"
+theme = "hyde-y"
+
+[author]
+  name = "Fernando Seror"
+  email = "ferdy89@gmail.com"
+
+[params]
+  brand = "Ferdynton"
+  topline = "At least computers read me"
+
+  sidebar = "left"
+
+  # Text for the top menu link, which goes the root URL for the site.
+  home = "Home"
+
+  # Sidebar social links.
+  github = "Ferdy89"
+  linkedin = "fseror"
+  twitter = "Ferdy89"
+
+  rss = true
