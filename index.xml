@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code and Stuff</title>
+    <link>https://ferdy89.github.io/</link>
+    <description>Recent content on Code and Stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
+    <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
+    <lastBuildDate>Wed, 02 May 2018 19:29:24 -0500</lastBuildDate>
+    
+	<atom:link href="https://ferdy89.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introducing Code and Stuff</title>
+      <link>https://ferdy89.github.io/post/introducing-code-and-stuff/</link>
+      <pubDate>Wed, 02 May 2018 19:29:24 -0500</pubDate>
+      <author>ferdy89@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdy89.github.io/post/introducing-code-and-stuff/</guid>
+      <description>Hello!
+My name is Fernando and I code professionally. I have been into computers since I was very young and I&amp;rsquo;ve devoted a big part of my life to it.
+I currently work primarily with Ruby and one of the things I love the most about it is its community. I&amp;rsquo;ve learned a lot from watching conference talks and reading on the Internet, and most of that content was created by people in their free time.</description>
+    </item>
+    
+  </channel>
+</rss>
