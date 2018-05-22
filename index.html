@@ -34,7 +34,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
 <link href="https://ferdy89.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.39" />
+<meta name="generator" content="Hugo 0.40.3" />
 
   
 <!--[if lt IE 9]>
@@ -137,11 +137,40 @@
     <h1>Code and Stuff
 </h1>
 
-    <span>last update: <time datetime="2018-05-02T19:29:24-05:00">2 May at 7:29pm</time>
+    <span>last update: <time datetime="2018-05-22T18:37:46-05:00">22 May at 6:37pm</time>
 </span>
 
   </header>
   
+  
+    <article class="container content summary">
+  <div class="container hat">
+  <h2><a href="https://ferdy89.github.io/post/unique-thread/">Unique Thread
+</a>
+</h2>
+
+  <time datetime="2018-05-22">22 May, 2018</time>
+
+</div>
+
+  <p class="container content">
+  
+  
+    I recently wrote a new library for Ruby called Unique Thread. It allows multiple Ruby processes to communicate through Redis so only one of them is running a given thread concurrently. The idea for this came to me when wanting to run a crontab runner on a Rails app but only wanted one of the processes to be running at any given time. If the process running the thread shuts down, I also wanted another process to wake up and start running in its place.
+  
+
+
+</p>
+
+
+  <div class="container readlink">
+  <a href="https://ferdy89.github.io/post/unique-thread/">Read more &rarr;</a>
+
+</div>
+
+
+</article>
+
   
     <article class="container content summary">
   <div class="container hat">

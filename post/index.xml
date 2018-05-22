@@ -8,10 +8,19 @@
     <language>en-US</language>
     <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
     <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
-    <lastBuildDate>Wed, 02 May 2018 19:29:24 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 22 May 2018 18:37:46 -0500</lastBuildDate>
     
 	<atom:link href="https://ferdy89.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unique Thread</title>
+      <link>https://ferdy89.github.io/post/unique-thread/</link>
+      <pubDate>Tue, 22 May 2018 18:37:46 -0500</pubDate>
+      <author>ferdy89@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdy89.github.io/post/unique-thread/</guid>
+      <description>I recently wrote a new library for Ruby called Unique Thread. It allows multiple Ruby processes to communicate through Redis so only one of them is running a given thread concurrently. The idea for this came to me when wanting to run a crontab runner on a Rails app but only wanted one of the processes to be running at any given time. If the process running the thread shuts down, I also wanted another process to wake up and start running in its place.</description>
+    </item>
     
     <item>
       <title>Introducing Code and Stuff</title>

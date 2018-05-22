@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Unique Thread  &middot; Code and Stuff</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Unique Thread  &middot; Code and Stuff ">
+<meta property="og:site_name" content="Code and Stuff"/>
+<meta property="og:url" content="https://ferdy89.github.io/post/unique-thread/" />
+<meta property="og:locale" content="en-US">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-05-22T18:37:46-05:00" />
+<meta property="og:article:modified_time" content="2018-05-22T18:37:46-05:00" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Ferdy89" />
+<meta name="twitter:creator" content="@Ferdy89" />
+<meta name="twitter:title" content="Unique Thread" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://ferdy89.github.io/post/unique-thread/" />
+<meta name="twitter:domain" content="https://ferdy89.github.io/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Unique Thread",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-05-22",
+    "description": "",
+    "wordCount": 909
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://ferdy89.github.io/post/unique-thread/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
+<link href="https://ferdy89.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.40.3" />
+
+  
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://ferdy89.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://ferdy89.github.io/css/style.css">
+
+
+  
+  
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://ferdy89.github.io/">
+  Ferdynton
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  At least computers read me
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+<a class="homelink" href="https://ferdy89.github.io/">Home</a>
+
+
+  
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+<a id="contact-link-email" class="contact_link" href="mailto:ferdy89@gmail.com">
+  <span class="fa fa-envelope-square"></span><span>email</span></a>
+
+
+
+<a id="contact-link-github" class="contact_link" href="https://github.com/Ferdy89">
+  <span class="fa fa-github-square"></span><span>github</span></a>
+
+
+
+
+
+<a id="contact-link-linkedin" class="contact_link" href="https://www.linkedin.com/in/fseror">
+  <span class="fa fa-linkedin-square"></span><span>linkedin</span></a>
+
+
+
+
+
+
+
+<a id="contact-link-twitter" class="contact_link" href="https://twitter.com/Ferdy89">
+  <span class="fa fa-twitter-square"></span><span>twitter</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Unique Thread
+</h1>
+
+  <div class="metas">
+<time datetime="2018-05-22">22 May, 2018</time>
+
+
+  
+  &middot; Read in about 5 min
+  &middot; (909 Words)
+  <br>
+  
+
+
+</div>
+
+</header>
+
+  <div class="container content">
+  
+
+<p>I recently wrote a new library for Ruby called <a href="https://github.com/Ferdy89/unique_thread">Unique
+Thread</a>. It allows multiple Ruby
+processes to communicate through Redis so only one of them is running a given
+thread concurrently. The idea for this came to me when wanting to run a crontab
+runner on a Rails app but only wanted one of the processes to be running at any
+given time. If the process running the thread shuts down, I also wanted another
+process to wake up and start running in its place.</p>
+
+<p>Since then, I&rsquo;ve found many other use cases where this strategy might be
+useful. This post explores some use cases for Unique Thread and the technical
+challenges.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>The most simple usage of Unique Thread goes like:</p>
+
+<pre><code class="language-ruby">UniqueThread.new('my-thread-name').run do
+  loop do
+    # Some code that needs to run every minute
+    sleep(60)
+  end
+end
+</code></pre>
+
+<p>The block in the Unique Thread loops infinitely running some code and sleeping
+for 60 seconds. It doesn&rsquo;t block the main thread, so it can be used on a Rails
+initializer and the app will boot normally. If some event like a deployment
+stops the process, another one will start the infinite loop in its place.</p>
+
+<h2 id="use-cases">Use cases</h2>
+
+<p>Beginning with the use case described in the header, running a process to
+trigger cron tasks is the most common use case I can think for Unique Thread.
+While there are many different tools in Ruby to run cron jobs, not all provide
+a solution for how to run it reliably on production (without having an
+exclusive process for it or being duplicated on every process). Unique Thread
+solves the uniqueness problem but doesn&rsquo;t solve other ones like:</p>
+
+<ul>
+<li>Having small periods of time without a process running the thread</li>
+<li>Switching processes often and hence having more frequent repetitions of the
+block (in the context of cron, this would mean running more than one &ldquo;tick&rdquo;
+per minute)</li>
+</ul>
+
+<p>In our case, this meant adding extra layers to our cron scheduler to store on
+a database the times when our cron commands were run. The scheduler then checks
+if the command should have run since then and now. This avoids running each
+command twice and also resists the possibility of the app being down for over
+one minute (although the commands will run late).</p>
+
+<p>Another use case for Unique Thread is for pushing statsd metrics about the app
+to a monitoring service. This is specially useful when the metrics come from
+information in the database or Redis, like the amount of users that have been
+online in the last hour or the latency of the Sidekiq queues. While submitting
+more information than needed might not be harmful in these cases, the overhead
+from performance and extra data might not be desired.</p>
+
+<p>One final use case for Unique Thread is to pull data from external sources into
+the app&rsquo;s database. Imagine that you wanted to keep a CSV file from an S3
+bucket in sync with a local table. With Unique Thread you can run this
+operation as often as every second. If this operation was ran by every process
+it would run multiple times per second, which in some APIs could mean being
+throttled.</p>
+
+<h2 id="technical-challenges">Technical challenges</h2>
+
+<p>Finally, I want to talk about why this problem is hard to solve. First of all,
+Redis does not provide many complex operations to be ran atomically. This is
+key for Unique Thread because it can&rsquo;t allow two processes to believe they&rsquo;re
+the ones that should be running right now. It needs a way of doing two things
+atomically:</p>
+
+<ul>
+<li>Check if the current process holds (or can hold) a distributed lock</li>
+<li>Acquire the lock when possible</li>
+</ul>
+
+<p>Without atomic operations, two processes could think they can hold the lock and
+then both acquire it, one of them being wrong. Thankfully, Redis allows running
+small LUA scrips in its server and guarantees that it runs atomically. Unique
+Thread uses this feature efficiently to minimize the performance hit on Redis
+and guarantee uniqueness.</p>
+
+<p>However, Unique Thread is not prepared for environments with distributed Redis
+with master and slave. This is explained in more detail in <a href="https://redis.io/topics/distlock">the Redis
+documentation</a>. The scope of this project for
+me was to learn about lower level tools for concurrency and get the job done
+simply for the majority of use cases. Concurrency is extremely hard!</p>
+
+<p>One of the reasons concurrency is hard is because it&rsquo;s very hard to know it&rsquo;s
+right. Running concurrent code and getting the right results doesn&rsquo;t guarantee
+anything because it might have been a &ldquo;lucky run&rdquo; where everything went right.
+There might be a way for your code to run and cause race condition, but finding
+that possible way is very hard. This makes testing very important because
+changing concurrent code is more difficult than usual. With Unique Thread I
+spent a long time ensuring the code is well encapsulated so it can be easier to
+understand. This already makes it easier to find flaws in the logic but it also
+comes with a thorough test suite for all the individual components. The tests
+also use small &lsquo;sleep&rsquo; commands to suggest the Ruby VM to switch threads, which
+is a very clumsy practice but makes the tests easier to understand.</p>
+
+<p>If you&rsquo;ve read until here, thank you for your interest! I hope you&rsquo;ve learned
+something or that Unique Thread helps your app. If you have any suggestions for
+the code, feel free to <a href="https://github.com/Ferdy89/unique_thread/issues/new">open an issue on the
+repo</a> or find me on
+Twitter!</p>
+
+</div>
+
+
+  <footer class="container">
+  <div class="container navigation no-print">
+  <h2>Navigation</h2>
+  
+  
+
+    
+    <a class="prev" href="https://ferdy89.github.io/post/introducing-code-and-stuff/" title="Introducing Code and Stuff">
+      Previous
+    </a>
+    
+
+    
+
+  
+
+
+</div>
+
+  <div class="container comments">
+  <h2>Comments</h2>
+  
+
+</div>
+
+</footer>
+
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+
+
+    
+  </body>
+</html>
+
