@@ -2,12 +2,14 @@ baseURL = "https://ferdy89.github.io/"
 title = "Code and Stuff"
 languageCode = "en-US"
 theme = "hyde-y"
+disqusShortname = "ferdynton"
 
 [author]
   name = "Fernando Seror"
   email = "ferdy89@gmail.com"
 
 [params]
+  disqusShortname = "ferdynton"
   brand = "Ferdynton"
   topline = "At least computers read me"
 
