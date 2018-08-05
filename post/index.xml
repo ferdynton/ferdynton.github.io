@@ -8,10 +8,21 @@
     <language>en-US</language>
     <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
     <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
-    <lastBuildDate>Tue, 22 May 2018 18:37:46 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 04 Aug 2018 20:34:33 -0500</lastBuildDate>
     
 	<atom:link href="https://ferdy89.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MovieMates</title>
+      <link>https://ferdy89.github.io/post/moviemates/</link>
+      <pubDate>Sat, 04 Aug 2018 20:34:33 -0500</pubDate>
+      <author>ferdy89@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdy89.github.io/post/moviemates/</guid>
+      <description>This is the story of MovieMates, a service I built with my roommates to help us determine what movies to watch.
+I share an apartment with 3 other people and we love watching movies. Living in a cold city like Chicago, it&amp;rsquo;s one of our favorite hobbies during the long winters.
+About 2 years ago, we noticed that many times it would take us very long to decide which movie to watch.</description>
+    </item>
     
     <item>
       <title>Unique Thread</title>
