@@ -8,10 +8,20 @@
     <language>en-US</language>
     <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
     <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
-    <lastBuildDate>Sat, 04 Aug 2018 20:34:33 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 19 Dec 2018 08:51:14 +0100</lastBuildDate>
     
 	<atom:link href="https://ferdy89.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Open Sourcing Moviemates</title>
+      <link>https://ferdy89.github.io/post/open-sourcing-moviemates/</link>
+      <pubDate>Wed, 19 Dec 2018 08:51:14 +0100</pubDate>
+      <author>ferdy89@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdy89.github.io/post/open-sourcing-moviemates/</guid>
+      <description>A few months ago I talked about this project I&amp;rsquo;ve been working on for the past few years, MovieMates. Back in August, I made the service public for anybody to use and a few days ago I also open sourced its code. I wanted to talk a little bit more about why I did this and why did I do it now.
+The reason why I did this won&amp;rsquo;t come as a surprise for those who know me.</description>
+    </item>
     
     <item>
       <title>MovieMates</title>
