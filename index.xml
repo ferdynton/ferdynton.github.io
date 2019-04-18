@@ -8,10 +8,20 @@
     <language>en-US</language>
     <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
     <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
-    <lastBuildDate>Wed, 19 Dec 2018 08:51:14 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 17 Apr 2019 20:40:00 -0500</lastBuildDate>
     
 	<atom:link href="https://ferdy89.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My OOP Style</title>
+      <link>https://ferdy89.github.io/post/my-oop-style/</link>
+      <pubDate>Wed, 17 Apr 2019 20:40:00 -0500</pubDate>
+      <author>ferdy89@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdy89.github.io/post/my-oop-style/</guid>
+      <description>I love Object Oriented Programming. This seems to be a somewhat controversial statement these days, but I love how good OO code can model reality and feel obvious to the human brain. To me, code that tells a good story might be one of the most valuable properties of a system.
+I spend a lot of time trying to make my code tell a good story. I love to find a mental model that bridges human understanding with computer logic.</description>
+    </item>
     
     <item>
       <title>Open Sourcing Moviemates</title>

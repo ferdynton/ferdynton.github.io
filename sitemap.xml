@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://ferdy89.github.io/post/my-oop-style/</loc>
+    <lastmod>2019-04-17T20:40:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ferdy89.github.io/post/open-sourcing-moviemates/</loc>
     <lastmod>2018-12-19T08:51:14+01:00</lastmod>
   </url>
@@ -29,13 +34,13 @@
   
   <url>
     <loc>https://ferdy89.github.io/</loc>
-    <lastmod>2018-12-19T08:51:14+01:00</lastmod>
+    <lastmod>2019-04-17T20:40:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ferdy89.github.io/post/</loc>
-    <lastmod>2018-12-19T08:51:14+01:00</lastmod>
+    <lastmod>2019-04-17T20:40:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
