@@ -21,5 +21,12 @@ rm -rf public/*
 echo "Generating site"
 hugo
 
+echo "Copying README over"
+cp README.md public/
+
 echo "Updating master branch"
-cd public && git add --all && git commit -m "Publishing to master (publish.sh)"
+pushd public && \
+  git add --all && \
+  git commit -m "Publishing to master (publish.sh)" && \
+  git push && \
+  popd
