@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-08-04",
     "description": "",
-    "wordCount": 672
+    "wordCount":  672 
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
 <link href="https://ferdy89.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.52" />
+<meta name="generator" content="Hugo 0.61.0" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -179,38 +179,30 @@
   <div class="container content">
   <p>This is the story of <a href="https://moviemates.party">MovieMates</a>, a service I built
 with my roommates to help us determine what movies to watch.</p>
-
 <p>I share an apartment with 3 other people and we love watching movies. Living in
-a cold city like Chicago, it&rsquo;s one of our favorite hobbies during the long
+a cold city like Chicago, it's one of our favorite hobbies during the long
 winters.</p>
-
 <p>About 2 years ago, we noticed that many times it would take us very long to
 decide which movie to watch. We also realized that many times we would talk
-about movies we wanted to watch but couldn&rsquo;t remember them whenever it
-mattered. Sometimes when there were 2 people home to watch a movie, we couldn&rsquo;t
-watch it because another roommate wanted too and we didn&rsquo;t want to watch it
+about movies we wanted to watch but couldn't remember them whenever it
+mattered. Sometimes when there were 2 people home to watch a movie, we couldn't
+watch it because another roommate wanted too and we didn't want to watch it
 without them!</p>
-
 <p>Some of us at home are engineers and quickly thought of ways to fix these
 problems. The first thing we thought of was having a Google Sheet shared among
 us and adding rows with the movies each wanted to watch. Each of us would then
 have one column with a dropdown for each row with three options to pick what we
-thought of that movie: if you wanted to watch it, if you didn&rsquo;t care much, or
-if you didn&rsquo;t want to watch it. With that information, we could apply filters
+thought of that movie: if you wanted to watch it, if you didn't care much, or
+if you didn't want to watch it. With that information, we could apply filters
 for the columns to figure out what movies we could watch depending on who was
-available to watch it at that time. We called it MovieMates, here&rsquo;s what it
+available to watch it at that time. We called it MovieMates, here's what it
 looked like:</p>
-
-<p><img src="/static/moviemates-spreadsheet.png" alt="First version of MovieMates" /></p>
-
-<p>Here&rsquo;s what it would look like if only Ainho and I wanted to watch a movie
+<p><img src="/static/moviemates-spreadsheet.png" alt="First version of MovieMates"></p>
+<p>Here's what it would look like if only Ainho and I wanted to watch a movie
 without Fido nor Alex:</p>
-
-<p><img src="/static/moviemates-spreadsheet-filter.png" alt="MovieMates with filters applied" /></p>
-
+<p><img src="/static/moviemates-spreadsheet-filter.png" alt="MovieMates with filters applied"></p>
 <p>This was a cheap way of satisfying most of our needs. It worked fine other than
 being a bit annoying having to reset the filters constantly.</p>
-
 <p>Soon, we started adding a lot of movies, the idea was a success! However, we
 often had the problem of not knowing much about a movie. Sometimes the title
 was even hard to find online. We agreed on making a new column for each movie
@@ -218,42 +210,32 @@ where we could manually add the link to Rotten Tomatoes to know more about it.
 That way we could use the magical IMPORTXML function in Google Sheet to parse
 the ratings from that URL. However, we started having issues and some ratings
 started to not load properly:</p>
-
-<p><img src="/static/moviemates-spreadsheet-ratings.png" alt="Rating import working and not
-working" /></p>
-
+<p><img src="/static/moviemates-spreadsheet-ratings.png" alt="Rating import working and notworking"></p>
 <p>We knew we wanted more out of that spreadsheet and some of us were looking for
 an idea to work on a toy project. We decided to start a Rails app to solve this
 problem once for all. MovieMates as we know it today was born.</p>
-
 <p>After some time developing MovieMates, it became ready to replace the
 spreadsheet. I had it deployed on a Raspberry Pi locally and it did its job for
 a long time as we kept improving the site very slowly.</p>
-
 <p>Time passed, we replaced the spreadsheet with the app and we improved it over
 time to fit our needs. We told other friends about it and turned out would
 enjoy using it as well, so a few months ago we started working to get it ready
 for the public. This meant enabling the site to work with different groups of
 friends as well as making it prettier (when it was only for us, we cared more
 about the function than the form).</p>
-
 <p>Today <a href="https://twitter.com/Ferdy89/status/1025778772388274176">I announced the
 project</a> for anybody to
-use. It&rsquo;s not the greatest piece of software in the world, but it&rsquo;s helped us
+use. It's not the greatest piece of software in the world, but it's helped us
 with our problem. I hope it helps you as well.</p>
-
 <p>The site features group management for friends, searching movies on <a href="https://www.themoviedb.org/">The Movie
 Database</a> and importing its data, links to search
 on popular streaming sites like Netflix, and provides an easy way of finding
-out what movies are best to watch with your friends. We&rsquo;ve come a long way from
+out what movies are best to watch with your friends. We've come a long way from
 that spreadsheet:</p>
-
-<p><img src="/static/moviemates-today.png" alt="MovieMates today" /></p>
-
+<p><img src="/static/moviemates-today.png" alt="MovieMates today"></p>
 <p>Try it out yourself on <a href="https://moviemates.party">moviemates.party</a> and please
 <a href="https://twitter.com/Ferdy89">let me know</a> what you think. I have plenty of
 energy and ideas to improve it if it becomes a helpful tool for more people.</p>
-
 <p>Thanks for reading and enjoy MovieMates!</p>
 
 </div>

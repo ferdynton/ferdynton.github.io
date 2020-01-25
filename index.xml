@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code and Stuff</title>
@@ -8,10 +8,20 @@
     <language>en-US</language>
     <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
     <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
-    <lastBuildDate>Wed, 17 Apr 2019 20:40:00 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 20:53:02 -0600</lastBuildDate>
     
 	<atom:link href="https://ferdy89.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Migrating a Rails app from Heroku to a Raspbery Pi</title>
+      <link>https://ferdy89.github.io/post/heroku-to-raspbery-pi/</link>
+      <pubDate>Sun, 22 Dec 2019 20:53:02 -0600</pubDate>
+      <author>ferdy89@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdy89.github.io/post/heroku-to-raspbery-pi/</guid>
+      <description>I&#39;ve got a Rails app called MovieMates that I&#39;ve been building on my spare time for a few years now. When it got mature enough, I deployed it to Heroku for 3 reasons:
+ Convenience (a basic deployment for Rails is as simple as git push heroku, and a lot of the tools out there are optimized for Heroku, including Rails itself) Free PostgreSQL database (which for a toy app like mine, means less money and peace of mind due to auto-management and free backups) Automatic TLS certificate management  However, there is one disadvantage:</description>
+    </item>
     
     <item>
       <title>My OOP Style</title>
@@ -29,8 +39,8 @@ I spend a lot of time trying to make my code tell a good story. I love to find a
       <pubDate>Wed, 19 Dec 2018 08:51:14 +0100</pubDate>
       <author>ferdy89@gmail.com (Fernando Seror)</author>
       <guid>https://ferdy89.github.io/post/open-sourcing-moviemates/</guid>
-      <description>A few months ago I talked about this project I&amp;rsquo;ve been working on for the past few years, MovieMates. Back in August, I made the service public for anybody to use and a few days ago I also open sourced its code. I wanted to talk a little bit more about why I did this and why did I do it now.
-The reason why I did this won&amp;rsquo;t come as a surprise for those who know me.</description>
+      <description>A few months ago I talked about this project I&#39;ve been working on for the past few years, MovieMates. Back in August, I made the service public for anybody to use and a few days ago I also open sourced its code. I wanted to talk a little bit more about why I did this and why did I do it now.
+The reason why I did this won&#39;t come as a surprise for those who know me.</description>
     </item>
     
     <item>
@@ -40,7 +50,7 @@ The reason why I did this won&amp;rsquo;t come as a surprise for those who know 
       <author>ferdy89@gmail.com (Fernando Seror)</author>
       <guid>https://ferdy89.github.io/post/moviemates/</guid>
       <description>This is the story of MovieMates, a service I built with my roommates to help us determine what movies to watch.
-I share an apartment with 3 other people and we love watching movies. Living in a cold city like Chicago, it&amp;rsquo;s one of our favorite hobbies during the long winters.
+I share an apartment with 3 other people and we love watching movies. Living in a cold city like Chicago, it&#39;s one of our favorite hobbies during the long winters.
 About 2 years ago, we noticed that many times it would take us very long to decide which movie to watch.</description>
     </item>
     
@@ -60,8 +70,8 @@ About 2 years ago, we noticed that many times it would take us very long to deci
       <author>ferdy89@gmail.com (Fernando Seror)</author>
       <guid>https://ferdy89.github.io/post/introducing-code-and-stuff/</guid>
       <description>Hello!
-My name is Fernando and I code professionally. I have been into computers since I was very young and I&amp;rsquo;ve devoted a big part of my life to it.
-I currently work primarily with Ruby and one of the things I love the most about it is its community. I&amp;rsquo;ve learned a lot from watching conference talks and reading on the Internet, and most of that content was created by people in their free time.</description>
+My name is Fernando and I code professionally. I have been into computers since I was very young and I&#39;ve devoted a big part of my life to it.
+I currently work primarily with Ruby and one of the things I love the most about it is its community. I&#39;ve learned a lot from watching conference talks and reading on the Internet, and most of that content was created by people in their free time.</description>
     </item>
     
   </channel>

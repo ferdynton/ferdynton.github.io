@@ -51,7 +51,7 @@
     },
     "datePublished": "2019-04-17",
     "description": "",
-    "wordCount": 1212
+    "wordCount":  1212 
   }
 </script>
 
@@ -62,7 +62,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
 <link href="https://ferdy89.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.52" />
+<meta name="generator" content="Hugo 0.61.0" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -177,137 +177,111 @@
 </header>
 
   <div class="container content">
-  
-
-<p>I love Object Oriented Programming. This seems to be a somewhat controversial
+  <p>I love Object Oriented Programming. This seems to be a somewhat controversial
 statement these days, but I love how good OO code can model reality and feel
 obvious to the human brain. To me, code that tells a good story might be one of
 the most valuable properties of a system.</p>
-
 <p>I spend a lot of time trying to make my code tell a good story. I love to find
 a mental model that bridges human understanding with computer logic. Here are
 some things I do in order to write that story.</p>
-
 <h2 id="spike-then-cherry-pick">Spike, then cherry pick</h2>
-
 <p>First of all, I like to experiment. I rarely find the best narrative on my
 first try, so I create a branch and move things around. I try thinking about
 public interfaces that feel ergonomic and pretty, then run the test suite to
 find out if such an interface is possible. I go with my gut and see where it
 takes me, with the only hope that I get some insights about my story. Since
-it&rsquo;s a spike, I&rsquo;ll throw this code away afterward. Sometimes I repeat this
-process a few times until I&rsquo;m comfortable with the story that I want to tell.</p>
-
-<p>Once I know what&rsquo;s the goal of my refactor, I open a new clean branch and start
-writing well-crafted commits with the code I&rsquo;m most confident about. I do this
-while testing my code thoroughly (which I don&rsquo;t do during the spike) and writing
+it's a spike, I'll throw this code away afterward. Sometimes I repeat this
+process a few times until I'm comfortable with the story that I want to tell.</p>
+<p>Once I know what's the goal of my refactor, I open a new clean branch and start
+writing well-crafted commits with the code I'm most confident about. I do this
+while testing my code thoroughly (which I don't do during the spike) and writing
 good commit messages to explain my thought process. This feels like cherry
 picking bits and pieces from the spikes.</p>
-
 <h2 id="find-the-objects">Find the objects</h2>
-
 <p>During the spike phase, I love using the <a href="https://github.com/troessner/reek">Reek
 gem</a> to try to find where each piece of
 logic belongs. This often helps me identify new objects or rethink the identity
 of some existing ones. Reek finds code smells, which then I try to
 systematically fix.</p>
-
 <p>Before I do that, there are two things I do to get the most out of Reek. First,
-I limit the code I have in class-level methods. Many Reek checks don&rsquo;t apply to
+I limit the code I have in class-level methods. Many Reek checks don't apply to
 those, so if I need to I create dummy classes so I can change class-level
 methods into instance-level ones. Another thing I do is to remove guard clauses
 and wrap the code below them into the <code>if</code> statement. The reason is that guard
 clauses often make it more difficult to extract private methods, which is a key
 refactor I use.</p>
-
 <p>The first smell I look for is the <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md">Too Many
 Statements</a>
 one. This targets long methods, which I then split into private methods the
 best I can. One thing I try to do is to keep the argument names match the caller
 and the method signature, which will help Reek identify data clumps.</p>
-
 <p>The next smell I look for is <a href="https://github.com/troessner/reek/blob/master/docs/Data-Clump.md">Data
 Clumps</a>. This
 will trigger when the same arguments are passed around through multiple
 methods. When this happens, it means I need to create a new class to
-encapsulate them. I don&rsquo;t worry too much about the name of this class yet
-because I trust I&rsquo;ll be able to find a good one later when I have more
+encapsulate them. I don't worry too much about the name of this class yet
+because I trust I'll be able to find a good one later when I have more
 information.</p>
-
 <p>Finally, I try to find <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md">Feature
 Envy</a> and
 <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md">Utility
 Functions</a>.
-These trigger when a method is using data that doesn&rsquo;t belong to it. The theory
+These trigger when a method is using data that doesn't belong to it. The theory
 here is that such code would be better if it lived with that data, so I try to
-move those methods to the objects that it&rsquo;s using. When this is not possible
+move those methods to the objects that it's using. When this is not possible
 (maybe the objects are from external gems, or are Ruby native types&hellip;), I
-create a new class for that code to live in. Once again, I don&rsquo;t worry too much
+create a new class for that code to live in. Once again, I don't worry too much
 about the name yet.</p>
-
 <h2 id="class-comments">Class comments</h2>
-
 <p>Now I move on to the <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md">Irresponsible
 Module</a>
-smell, which will trigger on any module or class that doesn&rsquo;t have a comment. I
-don&rsquo;t particularly love comments in code, but I find that trying to write one
+smell, which will trigger on any module or class that doesn't have a comment. I
+don't particularly love comments in code, but I find that trying to write one
 short and concise comment about what a class does helps me find the name of the
 class.</p>
-
 <p>For every class, I try to complete the sentence that starts with &ldquo;The purpose
-of this class is to&hellip;&ldquo;. I try to avoid using the words &ldquo;and&rdquo; and &ldquo;or&rdquo; in such
+of this class is to&hellip;&quot;. I try to avoid using the words &ldquo;and&rdquo; and &ldquo;or&rdquo; in such
 a description. I also look at the data passed to the initializer (which defines
 the identity of each object, what differentiates one instance from another) and
 the public methods of the class (which defines how the instances are perceived
 from the outside).</p>
-
 <p>With all of those things in mind, I take a minute and try to write one or two
 lines to describe the class, which should help me name it.</p>
-
 <h2 id="meaningful-names">Meaningful names</h2>
-
 <p>Once I understand what each class is supposed to do, I try to find a good name
 for it. A good name should everything the class does, but not much more. This
 means avoiding misleading names and too generic ones. This is more difficult
 than it looks like.</p>
-
 <p>One tool I use for inspiration is a <a href="https://www.thesaurus.com/">synonym
 browser</a>. I use tools like these to try to hone
 into the best word I can find for the situation. Maybe this also helps me
 rename some of the attributes or the methods for the class. Finding good names
 for classes is one of the most important things to do in order to tell a
 coherent story with code.</p>
-
 <h2 id="polymorphism-and-factories">Polymorphism and factories</h2>
-
-<p>At this point, the code should be well named to tell a nice story. What I&rsquo;m
+<p>At this point, the code should be well named to tell a nice story. What I'm
 looking for now is to untangle any parts that are hard to follow. One of these
 things are classes where the same <code>if</code> conditional is repeated multiple times.
 This is a nice opportunity to use polymorphism to reduce such repetition.</p>
-
 <p>What I do is find where is my code creating instances of these classes and,
 instead of calling the traditional <code>.new</code> method, I call the <code>for</code> method. I
 then proceed to create such <code>for</code> class-method where I can run the repeated <code>if</code>
 conditional once, then create a different object on each of the branches of the
 conditional. One of the objects will be the same as the original one, the other
-one will be made from a new class that I&rsquo;m going to create as an exact copy of
+one will be made from a new class that I'm going to create as an exact copy of
 the previous one. At this point, I can now remove the <code>if</code> from both of these
 classes, leaving the appropriate branch on each one of them. This <code>for</code> method
-is what&rsquo;s called a Factory Method.</p>
-
-<p>It&rsquo;s possible the two classes now have a lot of repeated code. If so, I might
+is what's called a Factory Method.</p>
+<p>It's possible the two classes now have a lot of repeated code. If so, I might
 consider creating a class hierarchy out of those. This will depend a lot on the
-context for the code that I&rsquo;m writing since hierarchies are sometimes difficult
+context for the code that I'm writing since hierarchies are sometimes difficult
 to get right.</p>
-
-<p>Finally, I&rsquo;ll go through the naming process again to name this new class
+<p>Finally, I'll go through the naming process again to name this new class
 appropriately.</p>
-
 <h2 id="final-thoughts">Final thoughts</h2>
-
-<p>This has been dense and it lacks examples all over the place. No worries! I&rsquo;ll
-write more on this topic on further posts. If there are any parts you&rsquo;d like me
-to dive deeper into, please let me know in the comments and I&rsquo;ll make sure to do
+<p>This has been dense and it lacks examples all over the place. No worries! I'll
+write more on this topic on further posts. If there are any parts you'd like me
+to dive deeper into, please let me know in the comments and I'll make sure to do
 it. Other than that, thank you for reading! I hope this helps you improve your
 process while coding. I would also love to hear about your techniques as well!</p>
 
@@ -326,6 +300,10 @@ process while coding. I would also love to hear about your techniques as well!</
     </a>
     
 
+    
+    <a class="next" href="https://ferdy89.github.io/post/heroku-to-raspbery-pi/" title="Migrating a Rails app from Heroku to a Raspbery Pi">
+      Next
+    </a>
     
 
   

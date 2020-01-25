@@ -1,6 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://ferdy89.github.io/</loc>
+    <lastmod>2019-12-22T20:53:02-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ferdy89.github.io/post/heroku-to-raspbery-pi/</loc>
+    <lastmod>2019-12-22T20:53:02-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ferdy89.github.io/post/</loc>
+    <lastmod>2019-12-22T20:53:02-06:00</lastmod>
+  </url>
   
   <url>
     <loc>https://ferdy89.github.io/post/my-oop-style/</loc>
@@ -29,24 +44,10 @@
   
   <url>
     <loc>https://ferdy89.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ferdy89.github.io/</loc>
-    <lastmod>2019-04-17T20:40:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ferdy89.github.io/post/</loc>
-    <lastmod>2019-04-17T20:40:00-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ferdy89.github.io/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

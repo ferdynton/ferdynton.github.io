@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Migrating a Rails app from Heroku to a Raspbery Pi  &middot; Code and Stuff</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Migrating a Rails app from Heroku to a Raspbery Pi  &middot; Code and Stuff ">
+<meta property="og:site_name" content="Code and Stuff"/>
+<meta property="og:url" content="https://ferdy89.github.io/post/heroku-to-raspbery-pi/" />
+<meta property="og:locale" content="en-US">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2019-12-22T20:53:02-06:00" />
+<meta property="og:article:modified_time" content="2019-12-22T20:53:02-06:00" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Ferdy89" />
+<meta name="twitter:creator" content="@Ferdy89" />
+<meta name="twitter:title" content="Migrating a Rails app from Heroku to a Raspbery Pi" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://ferdy89.github.io/post/heroku-to-raspbery-pi/" />
+<meta name="twitter:domain" content="https://ferdy89.github.io/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Migrating a Rails app from Heroku to a Raspbery Pi",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2019-12-22",
+    "description": "",
+    "wordCount":  3579 
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://ferdy89.github.io/post/heroku-to-raspbery-pi/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
+<link href="https://ferdy89.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.61.0" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://ferdy89.github.io/">
+  Ferdynton
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  At least computers read me
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+<a class="homelink" href="https://ferdy89.github.io/">Home</a>
+
+
+  
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+<a id="contact-link-email" class="contact_link" aria-label="Email" href="mailto:ferdy89@gmail.com">
+  <span class="fa fa-envelope-square"></span></a>
+
+
+
+<a id="contact-link-github" class="contact_link" aria-label="Github" href="https://github.com/Ferdy89">
+  <span class="fa fa-github-square"></span></a>
+
+
+
+
+ 
+<a id="contact-link-linkedin" class="contact_link" aria-label="LinkedIn" href="https://www.linkedin.com/in/fseror">
+  <span class="fa fa-linkedin-square"></span></a>
+
+
+
+
+
+
+
+<a id="contact-link-twitter" class="contact_link" aria-label="Twitter" href="https://twitter.com/Ferdy89">
+  <span class="fa fa-twitter-square"></span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Migrating a Rails app from Heroku to a Raspbery Pi
+</h1>
+
+  <div class="metas">
+<time datetime="2019-12-22">22 Dec, 2019</time>
+
+
+  
+  &middot; Read in about 17 min
+  &middot; (3579 Words)
+  <br>
+  
+
+
+</div>
+
+</header>
+
+  <div class="container content">
+  <p>I've got a Rails app called <a href="https://moviemates.party">MovieMates</a> that I've
+been building on my spare time for a few years now. When it got mature enough, I
+deployed it to Heroku for 3 reasons:</p>
+<ul>
+<li>Convenience (a basic deployment for Rails is as simple as <code>git push heroku</code>,
+and a lot of the tools out there are optimized for Heroku, including Rails
+itself)</li>
+<li><a href="https://elements.heroku.com/addons/heroku-postgresql">Free PostgreSQL
+database</a> (which for a
+toy app like mine, means less money and peace of mind due to auto-management
+and free backups)</li>
+<li><a href="https://devcenter.heroku.com/articles/automated-certificate-management">Automatic TLS certificate
+management</a></li>
+</ul>
+<p>However, there is one disadvantage:</p>
+<ul>
+<li><a href="https://www.heroku.com/pricing">A Hobby dyno is $84 a year</a> (this feels like
+a lot of money for an app very few people use and makes zero money. I also
+happen to be a very frugal person)</li>
+</ul>
+<p>I recently decided I wanted to start saving those $84 a year and I migrated my
+deployment to a Raspberry Pi I've got running at home. This wasn't easy, but it
+was fun and I learned a lot.</p>
+<p>I want to share all the steps I took in detail in case it helps anybody out
+there (or myself in the future, if I have to do this process again!).</p>
+<p>Here is a summary of the steps to take from the Raspberry Pi (assuming it's
+running a Raspbian-like OS and you have a home network with a router that
+supports NAT):</p>
+<ul>
+<li><a href="#create-user">Create a dedicated user with SSH access</a></li>
+<li><a href="#install">Install Nginx, chruby, PostgreSQL, and NVM</a></li>
+<li><a href="#env-vars">Migrate environment variables</a></li>
+<li><a href="#run-app">Run the app from the Raspberry Pi</a></li>
+<li><a href="#mina">Configure the <code>mina</code> gem</a></li>
+<li><a href="#daemonize">Daemonize the Rails app with <code>systemd</code> and Puma</a></li>
+<li><a href="#nginx">Configure Nginx</a></li>
+<li><a href="#domain">Configure your router and domain</a></li>
+<li><a href="#letsencrypt">Install a TLS certificate with LetsEncrypt</a></li>
+</ul>
+<p>And a couple of bonus sections:</p>
+<ul>
+<li><a href="#auto-deploy">Auto-deploy from GitLab</a></li>
+<li><a href="#auto-backup">Auto-backup the database regularly</a></li>
+</ul>
+<h2 id="create-user">Create a dedicated user with SSH access</h2>
+<p>For security and organizational purposes, it's good practice to keep this whole
+adventure managed under a new and separate user on the Raspberry Pi. We'll call
+it <code>rails</code> in this tutorial, but you might want to call it whatever your app is
+called.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo useradd -m -s zsh rails
+</code></pre></div><p>I've set the shell to Zsh because I like it better than Bash. The rest of the
+tutorial will use dotfiles that start like <code>.zsh...</code> instead of <code>.bash...</code>, but
+otherwise the two shells should be pretty much equivalent.</p>
+<p>Now you want to be able to SSH into your Raspberry Pi as this user because
+that will be useful for using the deployment technique. To do this, first open a
+shell with that user through any other user that has <code>sudo</code> access:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo su - rails
+</code></pre></div><p>Then, create an <code>.ssh/authorized_keys</code> file with the contents of your public key
+from the machine you're using to develop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mkdir .ssh
+echo <span style="color:#e6db74">&#39;ssh-rsa AAAAB3Nza...XYZ development-machine&#39;</span> &gt; .ssh/authorized_keys
+</code></pre></div><p>If you don't know where your public key is in your system, look for it in
+<code>~/.ssh/id_rsa.pub</code>. If such file doesn't exist, you can create your first pair
+of private/public keys using the <code>ssh-keygen</code> command and accepting all the
+defaults.</p>
+<h2 id="install">Install Nginx, <code>chruby</code>, PostgreSQL, and NVM</h2>
+<p>All of these pieces of software might be optional depending on your preferences,
+but I went for this setup. Nginx has been widely used for many years as a
+reverse proxy. <code>chruby</code> is the simplest way of managing Ruby versions and we
+won't need many features from a Ruby version manager throughout this tutorial.
+PostgreSQL is the most popular choice of database for Rails applications, but
+your app might be using another one. Finally, if you rely on Sprockets for the
+asset pipeline, you'll need Node, for which I recommend NVM (Node Version
+Manager) so we can upgrade easily in the future if we need (rather than using
+the system's Node installation).</p>
+<h3 id="nginx">Nginx</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt install nginx
+</code></pre></div><h3 id="chruby"><code>chruby</code></h3>
+<p>Refer to <a href="https://github.com/postmodern/chruby#install">the repo's installation
+instructions</a>, which are probably
+something close to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+tar -xzvf chruby-0.3.9.tar.gz
+cd chruby-0.3.9/
+sudo make install
+</code></pre></div><p>You'll probably want <code>ruby-install</code>, so use <a href="https://github.com/postmodern/ruby-install#install">the repo's installation
+instructions</a>, which are
+probably close to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">wget -O ruby-install-0.7.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.7.0.tar.gz
+tar -xzvf ruby-install-0.7.0.tar.gz
+cd ruby-install-0.7.0/
+sudo make install
+</code></pre></div><p>Install the Ruby version for your app using <code>sudo</code>, which will make it available
+to all users in the system:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo ruby-install ruby-2.5.7
+</code></pre></div><p>Finally load it from the <code>.zshenv</code> file in the <code>$HOME</code> directory for your
+<code>rails</code> user, including your desired Ruby version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">source /usr/local/share/chruby/chruby.sh
+chruby 2.5.7
+</code></pre></div><p>More about the <code>.zshenv</code> file on <a href="#env-vars">the environment variables section</a>.</p>
+<h3 id="postgresql">PostgreSQL</h3>
+<p>Installing PostgreSQL is easy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt install postgresql
+</code></pre></div><p>Once that's done, you'll want to create a database, a database user for your
+<code>rails</code> user account, and migrate the data from your existing database. To
+perform these steps, you'll want to use the <code>postgres</code> user that should have now
+been created in the Raspberry Pi:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo su - postgres
+</code></pre></div><p>From here, create your production database (use whatever database name your
+current app is using):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">createdb your_app_database_prod
+</code></pre></div><p>Now create a user with a password. Any user name would do, but I think it's
+consistent to reuse the name you used for your user account, in this case
+<code>rails</code>. To generate a strong random password, you can run <code>bundle exec rails secret</code> from your development machine to get a bunch of random characters (no
+need to get the full string, 30 or 40 characters should be enough). Log into a
+PostgreSQL console to launch the appropriate command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">psql your_app_database_prod
+
+your_app_database_prod<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE ROLE rails WITH LOGIN PASSWORD &#39;&lt;long-random-string&gt;&#39;</span>
+</code></pre></div><p>Save the password for later! You can exit the PostgreSQL console now.</p>
+<p>You might want to import your database from Heroku. One way of getting a copy of
+the current database is to go to <a href="https://data.heroku.com/">Heroku's Data
+Center</a> and selecting the database for your app. From
+there, go to &ldquo;Durability&rdquo; &gt; &ldquo;Create Manual Backup&rdquo;. Give it a few seconds to
+complete, then &ldquo;Download&rdquo; it.</p>
+<p>While on a shell for the <code>postgres</code> user, run <code>pg_restore</code> with the parameters
+that make sense for your app.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pg_restore -d your_app_database_prod /path/to/backup/file
+</code></pre></div><h3 id="nvm">NVM</h3>
+<p>Like <code>chruby</code>, make sure to refer to <a href="https://github.com/nvm-sh/nvm#installation-and-update">the repo's installation
+instructions</a>. Unlike
+<code>chruby</code>, NVM is not prepared to be installed system-wide, so <strong>make sure you
+install this from your <code>rails</code> user account</strong>. It should be something like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+</code></pre></div><p>Then install the latest Node version available:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nvm ls-remote       <span style="color:#75715e"># List all available versions</span>
+nvm install v13.2.0 <span style="color:#75715e"># Install the latest you see</span>
+</code></pre></div><p>Finally, add these lines to your <code>.zshenv</code> file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">export NVM_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.nvm</span><span style="color:#e6db74">&#34;</span>
+source <span style="color:#e6db74">&#34;</span>$NVM_DIR<span style="color:#e6db74">/nvm.sh</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>More about the <code>.zshenv</code> file on <a href="#env-vars">the environment variables section</a>.</p>
+<h2 id="env-vars">Migrate environment variables</h2>
+<p>To migrate environment variables, <code>export</code> them in the <code>.zshenv</code> file in the
+<code>$HOME</code> directory for your <code>rails</code> user:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Rails app environment variables</span>
+
+export DISABLE_BOOTSNAP<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+export RAILS_ENV<span style="color:#f92672">=</span>production
+export RACK_ENV<span style="color:#f92672">=</span>production
+
+<span style="color:#75715e"># ... and any others you&#39;ve got!</span>
+</code></pre></div><p>Per <a href="http://zsh.sourceforge.net/Intro/intro_3.html">ZSH's documentation</a>, the
+<code>.zshenv</code> file is sourced on all invocations of the shell, including
+non-interactive ones. This is important because <a href="#mina">our deployment script</a>
+won't use an interactive shell, but loging into the user account from a SSH
+session will work perfectly as well.</p>
+<p>Important mention to the <code>DISABLE_BOOTSNAP</code> environment variable I included in
+the example above: at the time of writing, there's <a href="https://github.com/Shopify/bootsnap/issues/67">a bug in Bootsnap with Ruby
+2.5 and below</a> that prevents
+Rails to boot on an architecture like the one a Raspberry Pi has. I have my
+Rails application patched to not use Bootsnap in production:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/boot.rb</span>
+
+<span style="color:#75715e"># ...</span>
+
+require <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">bootsnap/setup</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">DISABLE_BOOTSNAP</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">]</span>
+</code></pre></div><h2 id="run-app">Run the app from the Raspberry Pi</h2>
+<p>At this point, you should be able to run your app from your <code>rails</code> user on your
+Raspberry Pi! This step is not technically necessary, but I think it's a good
+sanity check to make sure things are working fine up to this point.</p>
+<p>First, clone your repository:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone https://gitlab.com/Ferdy89/movie_mates.git
+cd movie_mates
+</code></pre></div><p>Then, install all the dependencies:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bundle install
+</code></pre></div><p>Finally, serve your app!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bundle exec rails server
+</code></pre></div><p>If everything went right, you should be able to <code>curl</code> your <code>localhost</code> on
+whatever port your app is serving (usually 3000 by default) and see the HTML
+code of your home page:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -L localhost:3000
+
+&lt;!doctype html&gt;
+&lt;html&gt;
+
+<span style="color:#75715e"># ... more HTML code</span>
+</code></pre></div><p>If so, congrats! If not, make sure to go back and make everything right up to
+this point, because harder stuff is coming!</p>
+<h2 id="mina">Configure the <code>mina</code> gem</h2>
+<p><a href="https://github.com/mina-deploy/mina"><code>mina</code></a> is a gem to deploy applications
+over SSH. It's like <code>capistrano</code>, but faster.</p>
+<p>This step should be performed on the machine where you develop your app, not
+from Raspberry Pi. First, add it to your <code>Gemfile</code> or to a separate <code>Gemfile</code>
+you might want to keep for gems you don't use within your application directly.
+I do this with my apps to keep things separate. I call it <code>Gemfile-tools</code>, but
+any name works:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Gemfile-tools</span>
+
+<span style="color:#75715e"># Activate with BUNDLE_GEMFILE=Gemfile-tools</span>
+
+gem <span style="color:#e6db74">&#39;mina&#39;</span>
+</code></pre></div><p>And install it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">BUNDLE_GEMFILE<span style="color:#f92672">=</span>Gemfile-tools bundle install
+</code></pre></div><p>Now, following <a href="https://github.com/mina-deploy/mina/blob/master/docs/getting_started.md"><code>mina</code>'s
+guide</a>,
+initialize the files required for the gem:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">BUNDLE_GEMFILE<span style="color:#f92672">=</span>Gemfile-tools mina init
+</code></pre></div><p>This should create a <code>config/deploy.rb</code> file. Here's how you want this file to
+look for the time being:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">require <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mina/rails</span><span style="color:#e6db74">&#34;</span>
+require <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mina/git</span><span style="color:#e6db74">&#34;</span>
+
+set <span style="color:#e6db74">:application_name</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">your_app_name</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># The hostname to SSH to.</span>
+set <span style="color:#e6db74">:domain</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">your.raspberry.pi.domain</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># Username in the server to SSH to.</span>
+set <span style="color:#e6db74">:user</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">rails</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># Path to deploy into.</span>
+set <span style="color:#e6db74">:deploy_to</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/var/www/your_app_name</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># Git repo to clone from. (needed by mina/git)</span>
+set <span style="color:#e6db74">:repository</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://github.com/YourUser/your_app_name.git</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># Branch name to deploy. (needed by mina/git)</span>
+set <span style="color:#e6db74">:branch</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">master</span><span style="color:#e6db74">&#34;</span>
+
+desc <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Deploys the current version to the server.</span><span style="color:#e6db74">&#34;</span>
+task <span style="color:#e6db74">:deploy</span> <span style="color:#66d9ef">do</span>
+  deploy <span style="color:#66d9ef">do</span>
+    invoke <span style="color:#e6db74">:&#39;git:clone&#39;</span>
+    invoke <span style="color:#e6db74">:&#39;deploy:link_shared_paths&#39;</span>
+    invoke <span style="color:#e6db74">:&#39;bundle:install&#39;</span>
+    invoke <span style="color:#e6db74">:&#39;rails:db_migrate&#39;</span>
+    invoke <span style="color:#e6db74">:&#39;rails:assets_precompile&#39;</span>
+    invoke <span style="color:#e6db74">:&#39;deploy:cleanup&#39;</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>You'll need to replace the <code>set</code> commands at the top of the file with whatever
+values are currently true for your app.</p>
+<p>Don't commit this file yet! You might want to make the script pull some of those
+values from your environment variables to avoid leaking unnecessary information
+to the world. I'll teach you how to do that in the <a href="#auto-deploy">auto-deploy
+section</a>.</p>
+<p>You can now proceed to have <code>mina</code> get installed on <em>the other side</em>, meaning
+your Raspberry Pi.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">BUNDLE_GEMFILE<span style="color:#f92672">=</span>Gemfile-tools mina setup
+</code></pre></div><p>If this command succeeds, it means <code>mina</code> is perfectly capable of taking to your
+Raspberry Pi, which is huge!</p>
+<p>At this point, the <code>mina</code> guide tells us to run <code>mina deploy</code>. We're going to do
+that so that there's a copy of the app in the Raspberry Pi the same way it'll be
+in production.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">BUNDLE_GEMFILE<span style="color:#f92672">=</span>Gemfile-tools mina deploy
+</code></pre></div><h2 id="daemonize">Daemonize the Rails app with <code>systemd</code> and Puma</h2>
+<p>We're now in position to run the app from the Raspberry Pi and have <code>systemd</code> run
+it forever, even if the system restarts or if the app crashes.</p>
+<p>Puma has great docs on <a href="https://github.com/puma/puma/blob/master/docs/systemd.md">how to configure it with
+<code>systemd</code></a>. In
+essence, those instructions teach you how to install a service to keep the app
+running as the system boots and to survive crashes, and also how to keep an open
+socket so the app doesn't requests don't automatically fail while the app is
+being deployed or rebooted.</p>
+<p>For the purposes of this tutorial, I created my own <a href="https://gitlab.com/Ferdy89/movie_mates/blob/master/deploy/puma.service">file to install the
+service</a>
+and my own <a href="https://gitlab.com/Ferdy89/movie_mates/blob/master/deploy/puma.socket">file to install the
+socket</a>.
+Both come with instructions on how to use them. You want to copy them to
+<code>/etc/systemd/system/</code> and replace <code>&lt;DEPLOY_USER&gt;</code> with <code>rails</code>, and
+<code>&lt;DEPLOYMENT_PATH&gt;</code> with <code>/var/www/your_app_name</code> (as defined in your <code>mina</code>
+config file). After that, run the commands:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">systemctl daemon-reload                   <span style="color:#75715e"># Picks up the new files</span>
+systemctl enable puma.socket puma.service <span style="color:#75715e"># Installs the socket and the service</span>
+systemctl start puma.socket puma.service  <span style="color:#75715e"># Starts the socket and the service</span>
+</code></pre></div><p>In order for <code>mina</code> to be able to restart this service whenever a deployment
+happens, we need to allow the <code>rails</code> user to perform this restart, which is a
+fairly privileged action. From your Raspberry Pi, create a <code>sudoers</code> file for
+your <code>rails</code> user with a rule to allow to run one single command without a
+password:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo echo <span style="color:#e6db74">&#34;rails ALL= NOPASSWD: /bin/systemctl restart puma.service&#34;</span> &gt; /etc/sudoers.d/rails
+</code></pre></div><p>Then add an action to the end of your <code>config/deploy.rb</code> file so <code>mina</code> can
+restart the Puma service after it has deployed the new code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/deploy.rb</span>
+
+<span style="color:#75715e"># ...</span>
+
+task <span style="color:#e6db74">:deploy</span> <span style="color:#66d9ef">do</span>
+  deploy <span style="color:#66d9ef">do</span>
+    <span style="color:#75715e"># ...</span>
+
+    on <span style="color:#e6db74">:launch</span> <span style="color:#66d9ef">do</span>
+      command <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sudo systemctl restart puma.service</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>One last note about the <code>puma.service</code> file: it requires your app to have
+binstubs for Puma. This can be created on your app by running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bundle binstubs puma
+</code></pre></div><p>Then commit the changes to your repository and run <code>mina deploy</code> again. This
+makes it easier to call Puma on the repository and have it use the right
+Bundler installation.</p>
+<h2 id="nginx">Configure Nginx</h2>
+<p>At this point, <code>systemd</code> is keeping the app running but it's listening on a
+socket and we want to be able to access it from the outside world through HTTP.
+That's what Nginx is for.</p>
+<p>Once again, I've made my own version of the <a href="https://gitlab.com/Ferdy89/movie_mates/blob/master/deploy/nginx-movie_mates">Nginx configuration
+file</a>,
+which you can tweak to fit your own needs. You only need to copy it to
+<code>/etc/nginx/sites-available/</code> and symlink to <code>/etc/nginx/sites-enabled/</code>. It's
+specific to the <code>moviemates.party</code> domain, so replace that with whatever domain
+you have for your app. Finally, replace <code>&lt;DEPLOYMENT_PATH&gt;</code> with
+<code>/var/www/your_app_name</code> like in previous steps.</p>
+<p>There are some entries in there that are specific to LetsEncrypt and the way it
+manages TLS certificates. We won't be getting these certificates until a couple
+of steps later, so trust me for now.</p>
+<h2 id="domain">Configure your router and domain</h2>
+<p>This part is a bit trickier, because it'll depend on what router you have and
+what kind of firmware you have installed. I've got a <a href="https://www.amazon.com/TP-LINK-300Mbps-Wireless-Router-TL-WR841N/dp/B01GS37NV6/">$20 TP-LINK
+router</a>
+that I got many years ago and still works fine. I've got the <a href="https://dd-wrt.com/">DD-WRT open
+firmware distribution</a> installed and among the million
+features it has, it can route traffic from the WAN network (the Internet) to a
+local machine and port (your Raspberry Pi). I've had issues with this in the
+past, but I <a href="https://forum.dd-wrt.com/phpBB2/viewtopic.php?p=1184428">recently posted on their
+forums</a> and they helped
+me fix my problem (spoiler alert: I needed to install a nightly version).</p>
+<p>If you're using DD-WRT, go to <a href="http://192.168.1.1">your control panel</a>, then to
+&ldquo;NAT/Qos&rdquo; and, while in the &ldquo;Port Forwarding&rdquo; tab, add an entry for your
+application. Use whatever name you want under &ldquo;Application&rdquo;, &ldquo;Protocol&rdquo; is
+&ldquo;TCP&rdquo;, &ldquo;Source Net&rdquo; is &ldquo;0.0.0.0/0&rdquo; (the Internet), &ldquo;Port from&rdquo; is 80, &ldquo;IP
+Address&rdquo; is the local address of your Raspberry Pi (you can find it by running
+<code>ifconfig</code> on your Raspberry Pi and finding the <code>inet</code> parameter that starts
+with <code>192.168</code>), and &ldquo;Port to&rdquo; is 8080. Check &ldquo;Enable&rdquo;, then &ldquo;Apply Settings&rdquo;.</p>
+<p>This should now have your router open up traffic from the Internet to your
+Raspberry Pi. Scary, uh? This is a big trade-off of this self-hosting approach:
+if you make a mistake or become a target for whatever reason, an attacker might
+be able to get into your home network and do bad things from there. You need to
+consider whether this is a good strategy for you. The configuration I've shared
+here is the one I personally use and I feel comfortable with it, but if you've
+got important stuff going on in your home network or if you're targeted by
+anybody on the Internet, I'd suggest reconsidering opening up any ports out to
+the Internet.</p>
+<p>Finally, have whatever domain you have for your application to point to your
+home network. Do this by logging into your DNS management portal for your domain
+provider (I use Namecheap because, well, they're cheap) and creating an &ldquo;A
+Record&rdquo; to &ldquo;Host&rdquo; &ldquo;@&rdquo; with a &ldquo;Value&rdquo; of your Internet IP (find out about it by
+Googling &ldquo;what is my ip&rdquo;). Give it a few minutes to propagate, otherwise the
+next step might fail.</p>
+<h2 id="letsencrypt">Install a TLS certificate with LetsEncrypt</h2>
+<p>The last step before getting your site up and running like a professional one is
+to get a TLS certificate to have Nginx encrypt all communications and browsers
+knowing that they can trust these communications.</p>
+<p>This is mostly automated, here are the steps you need to take:</p>
+<ol>
+<li>Install <code>certbot</code> on your Raspberry Pi by following <a href="https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx">the instructions on
+their website</a>.</li>
+<li>Temporarily route to port 80 on your machine. Go to the same &ldquo;Port
+Forwarding&rdquo; tab on your router as in the last step and change &ldquo;Port to&rdquo; to be
+80, then &ldquo;Apply Settings&rdquo;. We'll revert this afterwards.</li>
+<li>Run <code>certbot</code> to verify your domain and install your certificate by running
+<code>sudo certbot --nginx -d moviemates.party</code> (use your own domain here).</li>
+<li>Once <code>certbot</code> succeeds, go back to your &ldquo;Port Forwarding&rdquo; tab on your router
+control panel and put &ldquo;Port to&rdquo; back to 8080 and &ldquo;Apply Settings&rdquo;.</li>
+<li>Finally, open your Nginx configuration file on <code>/etc/nginx/sites-available/</code>
+and search for any new changes that LetsEncrypt might have added. Delete any
+duplicate lines to avoid conflicts.</li>
+</ol>
+<p>Yay! You did it! If everything went right, you should now be able to hit your
+application domain from the Internet (I prefer doing this from my phone without
+using WiFi to ensure the networking configuration is correct) and see your home
+page! And with HTTPS! If this is not the case, please leave me a comment and let
+me know so I can help you and improve this guide for others.</p>
+<h2 id="auto-deploy">Auto-deploy from GitLab</h2>
+<p>At this point, your app is up and running and you can always manually deploy any
+changes using <code>mina deploy</code> from your laptop. However, I prefer to follow the
+principles of Continuous Deployment and avoid having to perform that extra step
+every time. This step teaches you how to get your GitLab-hosted project to be
+automatically deployed every time a merge to the <code>master</code> branch happens.</p>
+<p>First, add the following step to your <code>.gitlab-ci.yml</code> file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">production:
+  stage: deploy
+  cache: {}
+  script:
+    <span style="color:#75715e"># https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor</span>
+    - eval $(ssh-agent -s)
+    - echo <span style="color:#e6db74">&#34;$MINA_SSH_KEY&#34;</span> | tr -d <span style="color:#e6db74">&#39;\r&#39;</span> | ssh-add <span style="color:#e6db74">-
+</span><span style="color:#e6db74">   </span><span style="color:#e6db74"> </span><span style="color:#e6db74">- mkdir -p ~/.ssh</span>
+    - chmod <span style="color:#ae81ff">700</span> ~/.ssh
+
+    <span style="color:#75715e"># https://docs.gitlab.com/ee/ci/ssh_keys/#verifying-the-ssh-host-keys</span>
+    - echo <span style="color:#e6db74">&#34;$SSH_KNOWN_HOSTS&#34;</span> &gt; ~/.ssh/known_hosts
+    - chmod <span style="color:#ae81ff">644</span> ~/.ssh/known_hosts
+
+    - BUNDLE_GEMFILE=Gemfile-tools bundle exec mina deploy
+  only:
+    - master
+</code></pre></div><p>Then create a pair of public/private keys so GitLab can securely talk to your
+Raspberry Pi. Do this by running <code>ssh-keygen</code> from any machine and save it with
+the name <code>gitlab-key</code>. Once you've created them, grab the public one (file
+<code>gitlab-key.pub</code>) and copy its contents to the <code>~/.ssh/authorized_keys</code> file on
+your <code>rails</code> user account on your Raspberry Pi.</p>
+<p>After this, on your GitLab project go to &ldquo;Settings&rdquo;, &ldquo;CI/CD&rdquo;, &ldquo;Variables&rdquo;. This
+is where you can host private environment variables for your CI/CD pipeline to
+use without having to commit them to code. Make sure to mark them all as
+&ldquo;Protected&rdquo; so their values are scrubbed from the CI/CD output. For now, create
+a <code>MINA_SSH_KEY</code> variable and paste the contents of your <code>gitlab-key</code> private
+key (file <code>gitlab-key</code>). Once you've done this, you can delete both the
+<code>gitlab-key</code> and <code>gitlab-key.pub</code> files from whatever machine you used to
+create them.</p>
+<p>Unfortunately, your router still won't let GitLab talk to your Raspberry Pi. Go
+back to your &ldquo;Port Forwarding&rdquo; tab on your router's control panel and add an
+entry for this. Give it a name, protocol TCP, source net &ldquo;0.0.0.0/0&rdquo; (the
+Internet), choose a random number for the &ldquo;Port from&rdquo;, then use the local IP
+address of your Raspberry Pi and set &ldquo;Port to&rdquo; to 22. Then &ldquo;Apply Settings&rdquo;.
+Before you forget, create another environment variable on your GitLab project
+and name it <code>MINA_PORT</code>, then use the value of the random port you used on your
+router entry.</p>
+<p>To add another layer of safety in the connection and avoid man-in-the-middle
+attacks, let's store the fingerprint of your Raspberry Pi on GitLab. From your
+laptop, run:</p>
+<pre><code>ssh-keyscan -p &lt;your-random-port-number&gt; &lt;your-public-domain&gt;`
+</code></pre><p>Save the output of this command in another environment variable on your GitLab
+project, named <code>SSH_KNOWN_HOSTS</code>.</p>
+<p>Finally, as discussed in the step about <a href="#mina">how to configure <code>mina</code></a>, we can
+now hide the rest of the parameters of the connection to our Raspberry Pi so we
+don't give that information for free to the public. Create these environment
+variables with these values:</p>
+<pre><code>MINA_DEPLOYMENT_PATH &lt;/var/www/your_app_name&gt;
+MINA_DOMAIN &lt;your-public-domain&gt;
+MINA_USER &lt;rails in this tutorial&gt;
+</code></pre><p>Now you can change your <code>config/deploy.rb</code> file to use these parameters:</p>
+<pre><code># config/deploy.rb
+
+# The hostname to SSH to.
+set :domain, ENV.fetch(&quot;MINA_DOMAIN&quot;)
+
+# Username in the server to SSH to.
+set :user, ENV.fetch(&quot;MINA_USER&quot;)
+
+# SSH port number.
+set :port, ENV.fetch(&quot;MINA_PORT&quot;)
+
+# Path to deploy into.
+set :deploy_to, ENV.fetch(&quot;MINA_DEPLOYMENT_PATH&quot;)
+</code></pre><p>If everything went right, every Merge Request that gets merged to <code>master</code>
+should now trigger a deployment from GitLab to your Raspberry Pi!</p>
+<h2 id="auto-backup">Auto-backup the database regularly</h2>
+<p>If you're anything like me, you're very paranoid of these Raspberry Pis. I love
+them because they're cheap and sufficiently powerful but they're not as stable
+as Heroku, which means it'll eventually crash and die. This will mean you'll
+need to reinstall most of the things from this guide. This is painful, but will
+probably take you about an hour or two, no big deal. The worst loss is your
+database: whatever your app was storing in your Raspberry Pi is lost forever.</p>
+<p>That's not acceptable. I've got mine set up so it backs up the whole database to
+an external hard drive every hour, so I'm pretty sure I'm not going to lose much
+data even if the worst happens.</p>
+<p>To do this, log as your <code>postgres</code> user on your Raspberry Pi (it has access to
+all databases) and insert a new cron job:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo su - postgres
+crontab -e
+
+<span style="color:#75715e"># Add the following line</span>
+<span style="color:#ae81ff">0</span> * * * * pg_dump -f /&lt;path-to-your-external-hard-drive&gt;/your_app_database_prod-<span style="color:#e6db74">`</span>date +<span style="color:#ae81ff">\%</span>Y-<span style="color:#ae81ff">\%</span>m-<span style="color:#ae81ff">\%</span>d_<span style="color:#ae81ff">\%</span>H-<span style="color:#ae81ff">\%</span>M-<span style="color:#ae81ff">\%</span>S<span style="color:#e6db74">`</span> -Z <span style="color:#ae81ff">9</span> your_app_database_prod
+</code></pre></div><p>This will create a new compressed backup every hour with a timestamp. If you
+ever have a catastrophe, you can use the command <code>pg_restore</code> to get any of
+these files and restore the state of your app the way it was.</p>
+
+</div>
+
+
+  <footer class="container">
+  <div class="container navigation no-print">
+  <h2>Navigation</h2>
+  
+  
+
+    
+    <a class="prev" href="https://ferdy89.github.io/post/my-oop-style/" title="My OOP Style">
+      Previous
+    </a>
+    
+
+    
+
+  
+
+
+</div>
+
+  <div class="container comments">
+  <h2>Comments</h2>
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//ferdynton.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//ferdynton.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+    
+  </body>
+</html>
+
