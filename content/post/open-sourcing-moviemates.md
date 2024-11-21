@@ -6,7 +6,7 @@ A few months ago [I talked about this project I've been working on]({{< ref
 "moviemates.md" >}}) for the past few years,
 [MovieMates](https://moviemates.party). Back in August, I made the service
 public for anybody to use and a few days ago I also [open sourced its
-code](https://gitlab.com/Ferdy89/movie_mates). I wanted to talk a little bit
+code](https://gitlab.com/ferdynton/movie_mates). I wanted to talk a little bit
 more about why I did this and why did I do it now.
 
 The reason why I did this won't come as a surprise for those who know me. I'm a
@@ -51,7 +51,7 @@ don't mind much that my code is far from perfect. I hope some other people with
 the same motivations come and give a hand!
 
 So whether you're a developer and want to [give a hand with
-code](https://gitlab.com/Ferdy89/movie_mates) or if you're a movie fanatic and
+code](https://gitlab.com/ferdynton/movie_mates) or if you're a movie fanatic and
 want to [use MovieMates](https://moviemates.party) to build a collaborative list
 of movies to watch with friends, come and say hi!
 

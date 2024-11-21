@@ -1,4 +1,4 @@
-baseURL = "https://ferdy89.github.io/"
+baseURL = "https://ferdynton.github.io/"
 title = "Code and Stuff"
 languageCode = "en-US"
 theme = "hyde-y"
@@ -6,7 +6,7 @@ disqusShortname = "ferdynton"
 
 [author]
   name = "Fernando Seror"
-  email = "ferdy89@gmail.com"
+  email = "ferdynton@gmail.com"
 
 [params]
   disqusShortname = "ferdynton"
@@ -19,7 +19,7 @@ disqusShortname = "ferdynton"
   home = "Home"
 
   # Sidebar social links.
-  github = "Ferdy89"
+  github = "ferdynton"
   linkedin = "fseror"
   twitter = "Ferdy89"
 

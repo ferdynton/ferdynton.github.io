@@ -3,7 +3,7 @@ title: "Unique Thread"
 date: 2018-05-22T18:37:46-05:00
 ---
 I recently wrote a new library for Ruby called [Unique
-Thread](https://github.com/Ferdy89/unique_thread). It allows multiple Ruby
+Thread](https://github.com/ferdynton/unique_thread). It allows multiple Ruby
 processes to communicate through Redis so only one of them is running a given
 thread concurrently. The idea for this came to me when wanting to run a crontab
 runner on a Rails app but only wanted one of the processes to be running at any
@@ -104,6 +104,6 @@ is a very clumsy practice but makes the tests easier to understand.
 If you've read until here, thank you for your interest! I hope you've learned
 something or that Unique Thread helps your app. If you have any suggestions for
 the code, feel free to [open an issue on the
-repo](https://github.com/Ferdy89/unique_thread/issues/new) or find me on
+repo](https://github.com/ferdynton/unique_thread/issues/new) or find me on
 Twitter!
 
