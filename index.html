@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="Code and Stuff ">
 <meta property="og:site_name" content="Code and Stuff"/>
-<meta property="og:url" content="https://ferdy89.github.io/" />
+<meta property="og:url" content="https://ferdynton.github.io/" />
 <meta property="og:locale" content="en-US">
 
 
@@ -27,14 +27,16 @@
 
 
 
-<link href="https://ferdy89.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Code and Stuff" />
+  
+    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Code and Stuff" />
+  
 
-<link rel="canonical" href="https://ferdy89.github.io/" />
+<link rel="canonical" href="https://ferdynton.github.io/" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
-<link href="https://ferdy89.github.io/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdynton.github.io/touch-icon-144-precomposed.png">
+<link href="https://ferdynton.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.139.3">
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -54,7 +56,7 @@
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="https://ferdy89.github.io/">
+  <a class="baselink" href="https://ferdynton.github.io/">
   Ferdynton
 
 </a>
@@ -75,7 +77,7 @@
   <nav class="container nav primary no-print">
   
 
-<a class="homelink" href="https://ferdy89.github.io/">Home</a>
+<a class="homelink" href="https://ferdynton.github.io/">Home</a>
 
 
   
@@ -84,12 +86,9 @@
 
 <div class="container nav secondary no-print">
   
-<a id="contact-link-email" class="contact_link" rel="me" aria-label="Email" href="mailto:ferdy89@gmail.com">
-  <span class="fa fa-envelope-square"></span></a>
 
 
-
-<a id="contact-link-github" class="contact_link" rel="me" aria-label="Github" href="https://github.com/Ferdy89">
+<a id="contact-link-github" class="contact_link" rel="me" aria-label="Github" href="https://github.com/ferdynton">
   <span class="fa fa-github-square"></span></a>
 
 
@@ -118,8 +117,10 @@
 
 
 
-<a id="contact-link-rss" class="contact_link" rel="me" aria-label="RSS" href="https://ferdy89.github.io/index.xml" type="application/rss+xml">
-  <span class="fa fa-rss-square"></span></a>
+  
+  <a id="contact-link-rss" class="contact_link" rel="me" aria-label="RSS" href="/index.xml" type="application/rss+xml">
+    <span class="fa fa-rss-square"></span></a>
+  
 
 
 
@@ -144,7 +145,7 @@
   
     <article class="container content summary">
   <div class="container hat">
-  <h2><a href="https://ferdy89.github.io/post/heroku-to-raspbery-pi/">Migrating a Rails app from Heroku to a Raspbery Pi
+  <h2><a href="https://ferdynton.github.io/post/heroku-to-raspbery-pi/">Migrating a Rails app from Heroku to a Raspbery Pi
 </a>
 </h2>
 
@@ -155,8 +156,21 @@
   <p class="container content">
   
   
-    I've got a Rails app called MovieMates that I've been building on my spare time for a few years now. When it got mature enough, I deployed it to Heroku for 3 reasons:
- Convenience (a basic deployment for Rails is as simple as git push heroku, and a lot of the tools out there are optimized for Heroku, including Rails itself) Free PostgreSQL database (which for a toy app like mine, means less money and peace of mind due to auto-management and free backups) Automatic TLS certificate management  However, there is one disadvantage:
+    <p>I&rsquo;ve got a Rails app called <a href="https://moviemates.party">MovieMates</a> that I&rsquo;ve
+been building on my spare time for a few years now. When it got mature enough, I
+deployed it to Heroku for 3 reasons:</p>
+<ul>
+<li>Convenience (a basic deployment for Rails is as simple as <code>git push heroku</code>,
+and a lot of the tools out there are optimized for Heroku, including Rails
+itself)</li>
+<li><a href="https://elements.heroku.com/addons/heroku-postgresql">Free PostgreSQL
+database</a> (which for a
+toy app like mine, means less money and peace of mind due to auto-management
+and free backups)</li>
+<li><a href="https://devcenter.heroku.com/articles/automated-certificate-management">Automatic TLS certificate
+management</a></li>
+</ul>
+<p>However, there is one disadvantage:</p>
   
 
 
@@ -164,7 +178,7 @@
 
 
   <div class="container readlink">
-  <a href="https://ferdy89.github.io/post/heroku-to-raspbery-pi/">Read more &rarr;</a>
+  <a href="https://ferdynton.github.io/post/heroku-to-raspbery-pi/">Read more &rarr;</a>
 
 </div>
 
@@ -174,7 +188,7 @@
   
     <article class="container content summary">
   <div class="container hat">
-  <h2><a href="https://ferdy89.github.io/post/my-oop-style/">My OOP Style
+  <h2><a href="https://ferdynton.github.io/post/my-oop-style/">My OOP Style
 </a>
 </h2>
 
@@ -185,8 +199,13 @@
   <p class="container content">
   
   
-    I love Object Oriented Programming. This seems to be a somewhat controversial statement these days, but I love how good OO code can model reality and feel obvious to the human brain. To me, code that tells a good story might be one of the most valuable properties of a system.
-I spend a lot of time trying to make my code tell a good story. I love to find a mental model that bridges human understanding with computer logic.
+    <p>I love Object Oriented Programming. This seems to be a somewhat controversial
+statement these days, but I love how good OO code can model reality and feel
+obvious to the human brain. To me, code that tells a good story might be one of
+the most valuable properties of a system.</p>
+<p>I spend a lot of time trying to make my code tell a good story. I love to find
+a mental model that bridges human understanding with computer logic. Here are
+some things I do in order to write that story.</p>
   
 
 
@@ -194,7 +213,7 @@ I spend a lot of time trying to make my code tell a good story. I love to find a
 
 
   <div class="container readlink">
-  <a href="https://ferdy89.github.io/post/my-oop-style/">Read more &rarr;</a>
+  <a href="https://ferdynton.github.io/post/my-oop-style/">Read more &rarr;</a>
 
 </div>
 
@@ -204,7 +223,7 @@ I spend a lot of time trying to make my code tell a good story. I love to find a
   
     <article class="container content summary">
   <div class="container hat">
-  <h2><a href="https://ferdy89.github.io/post/open-sourcing-moviemates/">Open Sourcing Moviemates
+  <h2><a href="https://ferdynton.github.io/post/open-sourcing-moviemates/">Open Sourcing Moviemates
 </a>
 </h2>
 
@@ -215,8 +234,18 @@ I spend a lot of time trying to make my code tell a good story. I love to find a
   <p class="container content">
   
   
-    A few months ago I talked about this project I've been working on for the past few years, MovieMates. Back in August, I made the service public for anybody to use and a few days ago I also open sourced its code. I wanted to talk a little bit more about why I did this and why did I do it now.
-The reason why I did this won't come as a surprise for those who know me.
+    <p>A few months ago <a href="https://ferdynton.github.io/post/moviemates/">I talked about this project I&rsquo;ve been working on</a> for the past few years,
+<a href="https://moviemates.party">MovieMates</a>. Back in August, I made the service
+public for anybody to use and a few days ago I also <a href="https://gitlab.com/ferdynton/movie_mates">open sourced its
+code</a>. I wanted to talk a little bit
+more about why I did this and why did I do it now.</p>
+<p>The reason why I did this won&rsquo;t come as a surprise for those who know me. I&rsquo;m a
+big lover of open source (code in particular, but anything in general) as a way
+of sharing progress and building as a society. I think building in the open not
+only allows for more minds to join a creative process but also allows other
+minds to build on top of whatever has been shared. Interestingly enough, I don&rsquo;t
+think MovieMates will have many collaborators nor it&rsquo;ll be something for anybody
+else to build on top of. I hope I&rsquo;m wrong, though!</p>
   
 
 
@@ -224,7 +253,7 @@ The reason why I did this won't come as a surprise for those who know me.
 
 
   <div class="container readlink">
-  <a href="https://ferdy89.github.io/post/open-sourcing-moviemates/">Read more &rarr;</a>
+  <a href="https://ferdynton.github.io/post/open-sourcing-moviemates/">Read more &rarr;</a>
 
 </div>
 
@@ -234,7 +263,7 @@ The reason why I did this won't come as a surprise for those who know me.
   
     <article class="container content summary">
   <div class="container hat">
-  <h2><a href="https://ferdy89.github.io/post/moviemates/">MovieMates
+  <h2><a href="https://ferdynton.github.io/post/moviemates/">MovieMates
 </a>
 </h2>
 
@@ -245,9 +274,17 @@ The reason why I did this won't come as a surprise for those who know me.
   <p class="container content">
   
   
-    This is the story of MovieMates, a service I built with my roommates to help us determine what movies to watch.
-I share an apartment with 3 other people and we love watching movies. Living in a cold city like Chicago, it's one of our favorite hobbies during the long winters.
-About 2 years ago, we noticed that many times it would take us very long to decide which movie to watch.
+    <p>This is the story of <a href="https://moviemates.party">MovieMates</a>, a service I built
+with my roommates to help us determine what movies to watch.</p>
+<p>I share an apartment with 3 other people and we love watching movies. Living in
+a cold city like Chicago, it&rsquo;s one of our favorite hobbies during the long
+winters.</p>
+<p>About 2 years ago, we noticed that many times it would take us very long to
+decide which movie to watch. We also realized that many times we would talk
+about movies we wanted to watch but couldn&rsquo;t remember them whenever it
+mattered. Sometimes when there were 2 people home to watch a movie, we couldn&rsquo;t
+watch it because another roommate wanted too and we didn&rsquo;t want to watch it
+without them!</p>
   
 
 
@@ -255,7 +292,7 @@ About 2 years ago, we noticed that many times it would take us very long to deci
 
 
   <div class="container readlink">
-  <a href="https://ferdy89.github.io/post/moviemates/">Read more &rarr;</a>
+  <a href="https://ferdynton.github.io/post/moviemates/">Read more &rarr;</a>
 
 </div>
 
@@ -265,7 +302,7 @@ About 2 years ago, we noticed that many times it would take us very long to deci
   
     <article class="container content summary">
   <div class="container hat">
-  <h2><a href="https://ferdy89.github.io/post/unique-thread/">Unique Thread
+  <h2><a href="https://ferdynton.github.io/post/unique-thread/">Unique Thread
 </a>
 </h2>
 
@@ -276,7 +313,13 @@ About 2 years ago, we noticed that many times it would take us very long to deci
   <p class="container content">
   
   
-    I recently wrote a new library for Ruby called Unique Thread. It allows multiple Ruby processes to communicate through Redis so only one of them is running a given thread concurrently. The idea for this came to me when wanting to run a crontab runner on a Rails app but only wanted one of the processes to be running at any given time. If the process running the thread shuts down, I also wanted another process to wake up and start running in its place.
+    <p>I recently wrote a new library for Ruby called <a href="https://github.com/ferdynton/unique_thread">Unique
+Thread</a>. It allows multiple Ruby
+processes to communicate through Redis so only one of them is running a given
+thread concurrently. The idea for this came to me when wanting to run a crontab
+runner on a Rails app but only wanted one of the processes to be running at any
+given time. If the process running the thread shuts down, I also wanted another
+process to wake up and start running in its place.</p>
   
 
 
@@ -284,7 +327,7 @@ About 2 years ago, we noticed that many times it would take us very long to deci
 
 
   <div class="container readlink">
-  <a href="https://ferdy89.github.io/post/unique-thread/">Read more &rarr;</a>
+  <a href="https://ferdynton.github.io/post/unique-thread/">Read more &rarr;</a>
 
 </div>
 
@@ -294,7 +337,7 @@ About 2 years ago, we noticed that many times it would take us very long to deci
   
     <article class="container content summary">
   <div class="container hat">
-  <h2><a href="https://ferdy89.github.io/post/introducing-code-and-stuff/">Introducing Code and Stuff
+  <h2><a href="https://ferdynton.github.io/post/introducing-code-and-stuff/">Introducing Code and Stuff
 </a>
 </h2>
 
@@ -305,9 +348,13 @@ About 2 years ago, we noticed that many times it would take us very long to deci
   <p class="container content">
   
   
-    Hello!
-My name is Fernando and I code professionally. I have been into computers since I was very young and I've devoted a big part of my life to it.
-I currently work primarily with Ruby and one of the things I love the most about it is its community. I've learned a lot from watching conference talks and reading on the Internet, and most of that content was created by people in their free time.
+    <p>Hello!</p>
+<p>My name is Fernando and I code professionally. I have been into computers since
+I was very young and I&rsquo;ve devoted a big part of my life to it.</p>
+<p>I currently work primarily with Ruby and one of the things I love the most
+about it is its community. I&rsquo;ve learned a lot from watching conference talks
+and reading on the Internet, and most of that content was created by people in
+their free time. They might not know this, but I owe them a lot.</p>
   
 
 
@@ -315,7 +362,7 @@ I currently work primarily with Ruby and one of the things I love the most about
 
 
   <div class="container readlink">
-  <a href="https://ferdy89.github.io/post/introducing-code-and-stuff/">Read more &rarr;</a>
+  <a href="https://ferdynton.github.io/post/introducing-code-and-stuff/">Read more &rarr;</a>
 
 </div>
 

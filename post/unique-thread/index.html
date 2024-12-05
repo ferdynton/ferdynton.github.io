@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="Unique Thread  &middot; Code and Stuff ">
 <meta property="og:site_name" content="Code and Stuff"/>
-<meta property="og:url" content="https://ferdy89.github.io/post/unique-thread/" />
+<meta property="og:url" content="https://ferdynton.github.io/post/unique-thread/" />
 <meta property="og:locale" content="en-US">
 
 
@@ -36,8 +36,8 @@
 <meta name="twitter:creator" content="@Ferdy89" />
 <meta name="twitter:title" content="Unique Thread" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://ferdy89.github.io/post/unique-thread/" />
-<meta name="twitter:domain" content="https://ferdy89.github.io/">
+<meta name="twitter:url" content="https://ferdynton.github.io/post/unique-thread/" />
+<meta name="twitter:domain" content="https://ferdynton.github.io/">
   
 
 <script type="application/ld+json">
@@ -47,7 +47,7 @@
     "headline": "Unique Thread",
     "author": {
       "@type": "Person",
-      "name": "Fernando Seror"
+      "name": ""
     },
     "datePublished": "2018-05-22",
     "description": "",
@@ -57,12 +57,12 @@
 
 
 
-<link rel="canonical" href="https://ferdy89.github.io/post/unique-thread/" />
+<link rel="canonical" href="https://ferdynton.github.io/post/unique-thread/" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdy89.github.io/touch-icon-144-precomposed.png">
-<link href="https://ferdy89.github.io/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ferdynton.github.io/touch-icon-144-precomposed.png">
+<link href="https://ferdynton.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.139.3">
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -82,7 +82,7 @@
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="https://ferdy89.github.io/">
+  <a class="baselink" href="https://ferdynton.github.io/">
   Ferdynton
 
 </a>
@@ -103,7 +103,7 @@
   <nav class="container nav primary no-print">
   
 
-<a class="homelink" href="https://ferdy89.github.io/">Home</a>
+<a class="homelink" href="https://ferdynton.github.io/">Home</a>
 
 
   
@@ -112,12 +112,9 @@
 
 <div class="container nav secondary no-print">
   
-<a id="contact-link-email" class="contact_link" rel="me" aria-label="Email" href="mailto:ferdy89@gmail.com">
-  <span class="fa fa-envelope-square"></span></a>
 
 
-
-<a id="contact-link-github" class="contact_link" rel="me" aria-label="Github" href="https://github.com/Ferdy89">
+<a id="contact-link-github" class="contact_link" rel="me" aria-label="Github" href="https://github.com/ferdynton">
   <span class="fa fa-github-square"></span></a>
 
 
@@ -177,26 +174,26 @@
 </header>
 
   <div class="container content">
-  <p>I recently wrote a new library for Ruby called <a href="https://github.com/Ferdy89/unique_thread">Unique
+  <p>I recently wrote a new library for Ruby called <a href="https://github.com/ferdynton/unique_thread">Unique
 Thread</a>. It allows multiple Ruby
 processes to communicate through Redis so only one of them is running a given
 thread concurrently. The idea for this came to me when wanting to run a crontab
 runner on a Rails app but only wanted one of the processes to be running at any
 given time. If the process running the thread shuts down, I also wanted another
 process to wake up and start running in its place.</p>
-<p>Since then, I've found many other use cases where this strategy might be
+<p>Since then, I&rsquo;ve found many other use cases where this strategy might be
 useful. This post explores some use cases for Unique Thread and the technical
 challenges.</p>
 <h2 id="usage">Usage</h2>
 <p>The most simple usage of Unique Thread goes like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">UniqueThread</span><span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#39;my-thread-name&#39;</span>)<span style="color:#f92672">.</span>run <span style="color:#66d9ef">do</span>
-  <span style="color:#66d9ef">loop</span> <span style="color:#66d9ef">do</span>
-    <span style="color:#75715e"># Some code that needs to run every minute</span>
-    sleep(<span style="color:#ae81ff">60</span><span style="color:#f92672"></span>)
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>The block in the Unique Thread loops infinitely running some code and sleeping
-for 60 seconds. It doesn't block the main thread, so it can be used on a Rails
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">UniqueThread</span><span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#39;my-thread-name&#39;</span>)<span style="color:#f92672">.</span>run <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">loop</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Some code that needs to run every minute</span>
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">60</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>The block in the Unique Thread loops infinitely running some code and sleeping
+for 60 seconds. It doesn&rsquo;t block the main thread, so it can be used on a Rails
 initializer and the app will boot normally. If some event like a deployment
 stops the process, another one will start the infinite loop in its place.</p>
 <h2 id="use-cases">Use cases</h2>
@@ -205,7 +202,7 @@ trigger cron tasks is the most common use case I can think for Unique Thread.
 While there are many different tools in Ruby to run cron jobs, not all provide
 a solution for how to run it reliably on production (without having an
 exclusive process for it or being duplicated on every process). Unique Thread
-solves the uniqueness problem but doesn't solve other ones like:</p>
+solves the uniqueness problem but doesn&rsquo;t solve other ones like:</p>
 <ul>
 <li>Having small periods of time without a process running the thread</li>
 <li>Switching processes often and hence having more frequent repetitions of the
@@ -224,7 +221,7 @@ online in the last hour or the latency of the Sidekiq queues. While submitting
 more information than needed might not be harmful in these cases, the overhead
 from performance and extra data might not be desired.</p>
 <p>One final use case for Unique Thread is to pull data from external sources into
-the app's database. Imagine that you wanted to keep a CSV file from an S3
+the app&rsquo;s database. Imagine that you wanted to keep a CSV file from an S3
 bucket in sync with a local table. With Unique Thread you can run this
 operation as often as every second. If this operation was ran by every process
 it would run multiple times per second, which in some APIs could mean being
@@ -232,7 +229,7 @@ throttled.</p>
 <h2 id="technical-challenges">Technical challenges</h2>
 <p>Finally, I want to talk about why this problem is hard to solve. First of all,
 Redis does not provide many complex operations to be ran atomically. This is
-key for Unique Thread because it can't allow two processes to believe they're
+key for Unique Thread because it can&rsquo;t allow two processes to believe they&rsquo;re
 the ones that should be running right now. It needs a way of doing two things
 atomically:</p>
 <ul>
@@ -249,8 +246,8 @@ with master and slave. This is explained in more detail in <a href="https://redi
 documentation</a>. The scope of this project for
 me was to learn about lower level tools for concurrency and get the job done
 simply for the majority of use cases. Concurrency is extremely hard!</p>
-<p>One of the reasons concurrency is hard is because it's very hard to know it's
-right. Running concurrent code and getting the right results doesn't guarantee
+<p>One of the reasons concurrency is hard is because it&rsquo;s very hard to know it&rsquo;s
+right. Running concurrent code and getting the right results doesn&rsquo;t guarantee
 anything because it might have been a &ldquo;lucky run&rdquo; where everything went right.
 There might be a way for your code to run and cause race condition, but finding
 that possible way is very hard. This makes testing very important because
@@ -260,9 +257,9 @@ understand. This already makes it easier to find flaws in the logic but it also
 comes with a thorough test suite for all the individual components. The tests
 also use small &lsquo;sleep&rsquo; commands to suggest the Ruby VM to switch threads, which
 is a very clumsy practice but makes the tests easier to understand.</p>
-<p>If you've read until here, thank you for your interest! I hope you've learned
+<p>If you&rsquo;ve read until here, thank you for your interest! I hope you&rsquo;ve learned
 something or that Unique Thread helps your app. If you have any suggestions for
-the code, feel free to <a href="https://github.com/Ferdy89/unique_thread/issues/new">open an issue on the
+the code, feel free to <a href="https://github.com/ferdynton/unique_thread/issues/new">open an issue on the
 repo</a> or find me on
 Twitter!</p>
 
@@ -276,13 +273,13 @@ Twitter!</p>
   
 
     
-    <a class="prev" href="https://ferdy89.github.io/post/introducing-code-and-stuff/" title="Introducing Code and Stuff">
+    <a class="prev" href="https://ferdynton.github.io/post/introducing-code-and-stuff/" title="Introducing Code and Stuff">
       Previous
     </a>
     
 
     
-    <a class="next" href="https://ferdy89.github.io/post/moviemates/" title="MovieMates">
+    <a class="next" href="https://ferdynton.github.io/post/moviemates/" title="MovieMates">
       Next
     </a>
     

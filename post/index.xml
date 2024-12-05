@@ -2,77 +2,55 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Code and Stuff</title>
-    <link>https://ferdy89.github.io/post/</link>
+    <link>https://ferdynton.github.io/post/</link>
     <description>Recent content in Posts on Code and Stuff</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-US</language>
-    <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
-    <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
+    <managingEditor>ferdynton@gmail.com (Fernando Seror)</managingEditor>
+    <webMaster>ferdynton@gmail.com (Fernando Seror)</webMaster>
     <lastBuildDate>Sun, 22 Dec 2019 20:53:02 -0600</lastBuildDate>
-    
-	<atom:link href="https://ferdy89.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://ferdynton.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migrating a Rails app from Heroku to a Raspbery Pi</title>
-      <link>https://ferdy89.github.io/post/heroku-to-raspbery-pi/</link>
-      <pubDate>Sun, 22 Dec 2019 20:53:02 -0600</pubDate>
-      <author>ferdy89@gmail.com (Fernando Seror)</author>
-      <guid>https://ferdy89.github.io/post/heroku-to-raspbery-pi/</guid>
-      <description>I&#39;ve got a Rails app called MovieMates that I&#39;ve been building on my spare time for a few years now. When it got mature enough, I deployed it to Heroku for 3 reasons:
- Convenience (a basic deployment for Rails is as simple as git push heroku, and a lot of the tools out there are optimized for Heroku, including Rails itself) Free PostgreSQL database (which for a toy app like mine, means less money and peace of mind due to auto-management and free backups) Automatic TLS certificate management  However, there is one disadvantage:</description>
+      <link>https://ferdynton.github.io/post/heroku-to-raspbery-pi/</link>
+      <pubDate>Sun, 22 Dec 2019 20:53:02 -0600</pubDate><author>ferdynton@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdynton.github.io/post/heroku-to-raspbery-pi/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve got a Rails app called &lt;a href=&#34;https://moviemates.party&#34;&gt;MovieMates&lt;/a&gt; that I&amp;rsquo;ve&#xA;been building on my spare time for a few years now. When it got mature enough, I&#xA;deployed it to Heroku for 3 reasons:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Convenience (a basic deployment for Rails is as simple as &lt;code&gt;git push heroku&lt;/code&gt;,&#xA;and a lot of the tools out there are optimized for Heroku, including Rails&#xA;itself)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://elements.heroku.com/addons/heroku-postgresql&#34;&gt;Free PostgreSQL&#xA;database&lt;/a&gt; (which for a&#xA;toy app like mine, means less money and peace of mind due to auto-management&#xA;and free backups)&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://devcenter.heroku.com/articles/automated-certificate-management&#34;&gt;Automatic TLS certificate&#xA;management&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;However, there is one disadvantage:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>My OOP Style</title>
-      <link>https://ferdy89.github.io/post/my-oop-style/</link>
-      <pubDate>Wed, 17 Apr 2019 20:40:00 -0500</pubDate>
-      <author>ferdy89@gmail.com (Fernando Seror)</author>
-      <guid>https://ferdy89.github.io/post/my-oop-style/</guid>
-      <description>I love Object Oriented Programming. This seems to be a somewhat controversial statement these days, but I love how good OO code can model reality and feel obvious to the human brain. To me, code that tells a good story might be one of the most valuable properties of a system.
-I spend a lot of time trying to make my code tell a good story. I love to find a mental model that bridges human understanding with computer logic.</description>
+      <link>https://ferdynton.github.io/post/my-oop-style/</link>
+      <pubDate>Wed, 17 Apr 2019 20:40:00 -0500</pubDate><author>ferdynton@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdynton.github.io/post/my-oop-style/</guid>
+      <description>&lt;p&gt;I love Object Oriented Programming. This seems to be a somewhat controversial&#xA;statement these days, but I love how good OO code can model reality and feel&#xA;obvious to the human brain. To me, code that tells a good story might be one of&#xA;the most valuable properties of a system.&lt;/p&gt;&#xA;&lt;p&gt;I spend a lot of time trying to make my code tell a good story. I love to find&#xA;a mental model that bridges human understanding with computer logic. Here are&#xA;some things I do in order to write that story.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Open Sourcing Moviemates</title>
-      <link>https://ferdy89.github.io/post/open-sourcing-moviemates/</link>
-      <pubDate>Wed, 19 Dec 2018 08:51:14 +0100</pubDate>
-      <author>ferdy89@gmail.com (Fernando Seror)</author>
-      <guid>https://ferdy89.github.io/post/open-sourcing-moviemates/</guid>
-      <description>A few months ago I talked about this project I&#39;ve been working on for the past few years, MovieMates. Back in August, I made the service public for anybody to use and a few days ago I also open sourced its code. I wanted to talk a little bit more about why I did this and why did I do it now.
-The reason why I did this won&#39;t come as a surprise for those who know me.</description>
+      <link>https://ferdynton.github.io/post/open-sourcing-moviemates/</link>
+      <pubDate>Wed, 19 Dec 2018 08:51:14 +0100</pubDate><author>ferdynton@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdynton.github.io/post/open-sourcing-moviemates/</guid>
+      <description>&lt;p&gt;A few months ago &lt;a href=&#34;https://ferdynton.github.io/post/moviemates/&#34;&gt;I talked about this project I&amp;rsquo;ve been working on&lt;/a&gt; for the past few years,&#xA;&lt;a href=&#34;https://moviemates.party&#34;&gt;MovieMates&lt;/a&gt;. Back in August, I made the service&#xA;public for anybody to use and a few days ago I also &lt;a href=&#34;https://gitlab.com/ferdynton/movie_mates&#34;&gt;open sourced its&#xA;code&lt;/a&gt;. I wanted to talk a little bit&#xA;more about why I did this and why did I do it now.&lt;/p&gt;&#xA;&lt;p&gt;The reason why I did this won&amp;rsquo;t come as a surprise for those who know me. I&amp;rsquo;m a&#xA;big lover of open source (code in particular, but anything in general) as a way&#xA;of sharing progress and building as a society. I think building in the open not&#xA;only allows for more minds to join a creative process but also allows other&#xA;minds to build on top of whatever has been shared. Interestingly enough, I don&amp;rsquo;t&#xA;think MovieMates will have many collaborators nor it&amp;rsquo;ll be something for anybody&#xA;else to build on top of. I hope I&amp;rsquo;m wrong, though!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MovieMates</title>
-      <link>https://ferdy89.github.io/post/moviemates/</link>
-      <pubDate>Sat, 04 Aug 2018 20:34:33 -0500</pubDate>
-      <author>ferdy89@gmail.com (Fernando Seror)</author>
-      <guid>https://ferdy89.github.io/post/moviemates/</guid>
-      <description>This is the story of MovieMates, a service I built with my roommates to help us determine what movies to watch.
-I share an apartment with 3 other people and we love watching movies. Living in a cold city like Chicago, it&#39;s one of our favorite hobbies during the long winters.
-About 2 years ago, we noticed that many times it would take us very long to decide which movie to watch.</description>
+      <link>https://ferdynton.github.io/post/moviemates/</link>
+      <pubDate>Sat, 04 Aug 2018 20:34:33 -0500</pubDate><author>ferdynton@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdynton.github.io/post/moviemates/</guid>
+      <description>&lt;p&gt;This is the story of &lt;a href=&#34;https://moviemates.party&#34;&gt;MovieMates&lt;/a&gt;, a service I built&#xA;with my roommates to help us determine what movies to watch.&lt;/p&gt;&#xA;&lt;p&gt;I share an apartment with 3 other people and we love watching movies. Living in&#xA;a cold city like Chicago, it&amp;rsquo;s one of our favorite hobbies during the long&#xA;winters.&lt;/p&gt;&#xA;&lt;p&gt;About 2 years ago, we noticed that many times it would take us very long to&#xA;decide which movie to watch. We also realized that many times we would talk&#xA;about movies we wanted to watch but couldn&amp;rsquo;t remember them whenever it&#xA;mattered. Sometimes when there were 2 people home to watch a movie, we couldn&amp;rsquo;t&#xA;watch it because another roommate wanted too and we didn&amp;rsquo;t want to watch it&#xA;without them!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Unique Thread</title>
-      <link>https://ferdy89.github.io/post/unique-thread/</link>
-      <pubDate>Tue, 22 May 2018 18:37:46 -0500</pubDate>
-      <author>ferdy89@gmail.com (Fernando Seror)</author>
-      <guid>https://ferdy89.github.io/post/unique-thread/</guid>
-      <description>I recently wrote a new library for Ruby called Unique Thread. It allows multiple Ruby processes to communicate through Redis so only one of them is running a given thread concurrently. The idea for this came to me when wanting to run a crontab runner on a Rails app but only wanted one of the processes to be running at any given time. If the process running the thread shuts down, I also wanted another process to wake up and start running in its place.</description>
+      <link>https://ferdynton.github.io/post/unique-thread/</link>
+      <pubDate>Tue, 22 May 2018 18:37:46 -0500</pubDate><author>ferdynton@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdynton.github.io/post/unique-thread/</guid>
+      <description>&lt;p&gt;I recently wrote a new library for Ruby called &lt;a href=&#34;https://github.com/ferdynton/unique_thread&#34;&gt;Unique&#xA;Thread&lt;/a&gt;. It allows multiple Ruby&#xA;processes to communicate through Redis so only one of them is running a given&#xA;thread concurrently. The idea for this came to me when wanting to run a crontab&#xA;runner on a Rails app but only wanted one of the processes to be running at any&#xA;given time. If the process running the thread shuts down, I also wanted another&#xA;process to wake up and start running in its place.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introducing Code and Stuff</title>
-      <link>https://ferdy89.github.io/post/introducing-code-and-stuff/</link>
-      <pubDate>Wed, 02 May 2018 19:29:24 -0500</pubDate>
-      <author>ferdy89@gmail.com (Fernando Seror)</author>
-      <guid>https://ferdy89.github.io/post/introducing-code-and-stuff/</guid>
-      <description>Hello!
-My name is Fernando and I code professionally. I have been into computers since I was very young and I&#39;ve devoted a big part of my life to it.
-I currently work primarily with Ruby and one of the things I love the most about it is its community. I&#39;ve learned a lot from watching conference talks and reading on the Internet, and most of that content was created by people in their free time.</description>
+      <link>https://ferdynton.github.io/post/introducing-code-and-stuff/</link>
+      <pubDate>Wed, 02 May 2018 19:29:24 -0500</pubDate><author>ferdynton@gmail.com (Fernando Seror)</author>
+      <guid>https://ferdynton.github.io/post/introducing-code-and-stuff/</guid>
+      <description>&lt;p&gt;Hello!&lt;/p&gt;&#xA;&lt;p&gt;My name is Fernando and I code professionally. I have been into computers since&#xA;I was very young and I&amp;rsquo;ve devoted a big part of my life to it.&lt;/p&gt;&#xA;&lt;p&gt;I currently work primarily with Ruby and one of the things I love the most&#xA;about it is its community. I&amp;rsquo;ve learned a lot from watching conference talks&#xA;and reading on the Internet, and most of that content was created by people in&#xA;their free time. They might not know this, but I owe them a lot.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

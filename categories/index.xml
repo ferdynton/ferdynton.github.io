@@ -2,15 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Code and Stuff</title>
-    <link>https://ferdy89.github.io/categories/</link>
+    <link>https://ferdynton.github.io/categories/</link>
     <description>Recent content in Categories on Code and Stuff</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-US</language>
-    <managingEditor>ferdy89@gmail.com (Fernando Seror)</managingEditor>
-    <webMaster>ferdy89@gmail.com (Fernando Seror)</webMaster>
-    
-	<atom:link href="https://ferdy89.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>ferdynton@gmail.com (Fernando Seror)</managingEditor>
+    <webMaster>ferdynton@gmail.com (Fernando Seror)</webMaster>
+    <atom:link href="https://ferdynton.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
