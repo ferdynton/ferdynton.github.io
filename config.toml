@@ -2,9 +2,8 @@ baseURL = "https://ferdynton.github.io/"
 title = "Code and Stuff"
 languageCode = "en-US"
 theme = "hyde-y"
-disqusShortname = "ferdynton"
 
-[author]
+[params.author]
   name = "Fernando Seror"
   email = "ferdynton@gmail.com"
 
