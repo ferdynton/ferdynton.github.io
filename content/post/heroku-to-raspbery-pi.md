@@ -58,7 +58,7 @@ it `rails` in this tutorial, but you might want to call it whatever your app is
 called.
 
 ```sh
-sudo useradd -m -s zsh rails
+sudo useradd -m -s /bin/zsh rails
 ```
 
 I've set the shell to Zsh because I like it better than Bash. The rest of the
